@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGAL TURIS RJ (ABIH-RJ) — Legislação Hotelaria</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:#333; line-height:1.55; padding:20px; }
+.container { max-width:1500px; margin:0 auto; background:#fff; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.3); overflow:hidden; }
+.header { background:linear-gradient(135deg,#00264D 0%,#0066CC 50%,#1E88E5 100%); color:#fff; padding:30px 40px; text-align:center; }
+.header img.logo { display:inline-block; width:90px; height:auto; background:#fff; padding:10px; border-radius:10px; margin-bottom:14px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
+.header h1 { font-size:2.2em; margin-bottom:6px; }
+.header p { font-size:1em; opacity:.95; }
+.header .meta { margin-top:12px; font-size:.92em; opacity:.9; }
+.header .fonte { margin-top:4px; font-size:.82em; opacity:.85; }
+
+/* Navigation Tabs */
+.tabs { background:#f0f4f8; border-bottom:1px solid #ddd; padding:0 40px; display:flex; flex-wrap:wrap; gap:0; }
+.tab-btn { background:transparent; border:none; padding:14px 20px; font-size:.95em; font-weight:600; color:#555; cursor:pointer; border-bottom:3px solid transparent; transition:all .15s; }
+.tab-btn:hover { color:#0066CC; background:rgba(0,102,204,.05); }
+.tab-btn.active { color:#0066CC; border-bottom-color:#0066CC; background:#fff; }
+.tab-btn.placas.active { color:#FF6B00; border-bottom-color:#FF6B00; }
+.tab-content { display:none; padding:35px 40px; }
+.tab-content.active { display:block; }
+
+.section { margin-bottom:40px; }
+.section h2 { color:#0066CC; font-size:1.6em; margin-bottom:16px; padding-bottom:8px; border-bottom:3px solid #FF9900; }
+.section h3 { color:#444; font-size:1.15em; margin:16px 0 10px; }
+
+/* Stats */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom:25px; }
+.stat-card { color:#fff; padding:20px; border-radius:8px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,.1); }
+.stat-card.cadastrado { background:linear-gradient(135deg,#00AA00 0%,#008000 100%); }
+.stat-card.faltando { background:linear-gradient(135deg,#FF9900 0%,#FF6600 100%); }
+.stat-card.total { background:linear-gradient(135deg,#0066CC 0%,#004499 100%); }
+.stat-card.urgente { background:linear-gradient(135deg,#FF6B6B 0%,#CC0000 100%); }
+.stat-card.fase1 { background:linear-gradient(135deg,#7CB342 0%,#558B2F 100%); }
+.stat-number { font-size:2.2em; font-weight:bold; margin-bottom:6px; }
+.stat-label { font-size:.92em; opacity:.95; }
+.stat-percent { font-size:.82em; margin-top:5px; opacity:.85; }
+
+/* Filter Bar */
+.filter-bar { background:#f7f9fc; border:1px solid #e1e8ed; border-radius:10px; padding:16px; margin-bottom:22px; position:sticky; top:10px; z-index:50; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.filter-bar h3 { color:#0066CC; margin-bottom:10px; font-size:1.05em; }
+.filter-row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:9px; }
+.filter-row:last-child { margin-bottom:0; }
+.filter-row label { font-weight:600; color:#444; margin-right:6px; min-width:60px; font-size:.9em; }
+.filter-btn { background:#fff; border:2px solid #ccd5dd; color:#555; padding:6px 12px; border-radius:18px; cursor:pointer; font-size:.85em; font-weight:600; transition:all .15s; }
+.filter-btn:hover { border-color:#0066CC; color:#0066CC; }
+.filter-btn.active { background:#0066CC; border-color:#0066CC; color:#fff; }
+.filter-btn.type-lei.active { background:#00AA00; border-color:#00AA00; }
+.filter-btn.type-pl.active { background:#FF9900; border-color:#FF9900; }
+.filter-btn.type-dec.active { background:#9900CC; border-color:#9900CC; }
+.filter-btn.type-port.active { background:#0099CC; border-color:#0099CC; }
+.filter-btn.type-mp.active { background:#CC0066; border-color:#CC0066; }
+.filter-btn.type-lc.active { background:#663300; border-color:#663300; }
+.search-input { flex:1; min-width:220px; padding:7px 12px; border:2px solid #ccd5dd; border-radius:6px; font-size:.92em; }
+.search-input:focus { outline:none; border-color:#0066CC; }
+.counter { background:#0066CC; color:#fff; padding:5px 12px; border-radius:18px; font-weight:600; font-size:.85em; }
+
+/* Tables */
+table { width:100%; border-collapse:collapse; margin-bottom:22px; box-shadow:0 2px 8px rgba(0,0,0,.08); border-radius:8px; overflow:hidden; }
+table thead { background:#0066CC; color:#fff; }
+table th { padding:12px 10px; text-align:left; font-weight:600; font-size:.88em; }
+table td { padding:10px 10px; border-bottom:1px solid #eee; vertical-align:top; font-size:.88em; }
+table tbody tr:hover { background:#f5f8fc; }
+table tbody tr.hidden { display:none; }
+.doc-link { color:#0066CC; text-decoration:none; font-weight:600; cursor:pointer; padding:4px 9px; background:#E6F0FF; border-radius:5px; display:inline-block; font-size:.85em; }
+.doc-link:hover { background:#0066CC; color:#fff; }
+
+/* Badges */
+.badge { display:inline-block; padding:3px 9px; border-radius:13px; font-size:.75em; font-weight:600; margin-right:3px; white-space:nowrap; }
+.b-ativo { background:#00AA00; color:#fff; }
+.b-tramitando { background:#FF9900; color:#fff; }
+.b-arquivado { background:#888; color:#fff; }
+.b-anexado { background:#6B7280; color:#fff; }
+.b-prejudicado { background:#999; color:#fff; }
+.b-federal { background:#0066CC; color:#fff; }
+.b-estadual { background:#9900CC; color:#fff; }
+.b-municipal { background:#FF9900; color:#fff; }
+.b-lei { background:#00AA00; color:#fff; }
+.b-pl { background:#FF9900; color:#fff; }
+.b-plc { background:#FF6600; color:#fff; }
+.b-decreto { background:#9900CC; color:#fff; }
+.b-portaria { background:#0099CC; color:#fff; }
+.b-mp { background:#CC0066; color:#fff; }
+.b-lc { background:#663300; color:#fff; }
+.b-critica { background:#FF6B6B; color:#fff; }
+.b-alta { background:#FFA500; color:#fff; }
+.b-media { background:#FFD700; color:#333; }
+.b-baixa { background:#cbd5e0; color:#444; }
+
+/* Themes Cards */
+.themes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+.theme-card { background:#fff; border:1px solid #e1e8ed; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.theme-card h4 { color:#0066CC; font-size:1em; margin-bottom:9px; padding-bottom:7px; border-bottom:2px solid #FF9900; }
+.theme-card ul { list-style:none; padding:0; }
+.theme-card li { padding:5px 0; border-bottom:1px dashed #eee; font-size:.87em; }
+.theme-card li:last-child { border-bottom:none; }
+.theme-card .count { float:right; background:#0066CC; color:#fff; padding:2px 8px; border-radius:11px; font-size:.74em; font-weight:600; }
+
+
+
+/* Placas obrigatórias */
+.placas-table th { background:#FF6B00 !important; color:#fff; }
+.placas-table tbody tr:hover { background:#fff5ee; }
+.placa-yes { color:#00AA00; font-weight:bold; font-size:1.1em; }
+.placa-x { color:#999; font-weight:bold; font-size:1.1em; }
+
+/* Phase Plan */
+.phase-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:15px; margin-bottom:20px; }
+.phase-card { padding:18px; border-radius:10px; color:#fff; position:relative; }
+.phase-1 { background:linear-gradient(135deg,#7CB342,#558B2F); }
+.phase-2 { background:linear-gradient(135deg,#FF9900,#FF6600); }
+.phase-3 { background:linear-gradient(135deg,#0066CC,#004499); }
+.phase-card h4 { margin-bottom:7px; font-size:1.1em; }
+.phase-card .deadline { font-size:.88em; opacity:.95; margin-bottom:7px; }
+.phase-card .count-big { font-size:1.9em; font-weight:bold; }
+.phase-card .status-tag { position:absolute; top:14px; right:14px; background:rgba(255,255,255,.25); padding:3px 10px; border-radius:11px; font-size:.78em; font-weight:600; }
+
+.conclusao { background:linear-gradient(135deg,#f0f8ff,#e6f3ff); border-left:5px solid #0066CC; padding:20px; border-radius:8px; margin-top:18px; }
+.conclusao h3 { color:#0066CC; margin-bottom:9px; }
+.conclusao ul { margin:9px 0 9px 22px; }
+.conclusao li { padding:3px 0; font-size:.93em; }
+
+/* Modal */
+.modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.7); z-index:100; align-items:center; justify-content:center; padding:20px; }
+.modal-overlay.show { display:flex; }
+.modal { background:#fff; border-radius:10px; padding:0; max-width:1100px; width:100%; height:90vh; max-height:900px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 30px 60px rgba(0,0,0,.4); }
+.modal-header { background:linear-gradient(135deg,#0066CC,#004499); color:#fff; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; }
+.modal-header h3 { margin:0; font-size:1.15em; }
+.modal-close { background:#FF6B6B; color:#fff; border:none; padding:7px 14px; border-radius:6px; cursor:pointer; font-weight:600; font-size:.88em; }
+.modal-close:hover { background:#CC0000; }
+.modal-body { display:flex; flex:1; overflow:hidden; }
+.modal-info { width:340px; min-width:280px; padding:18px; background:#f7f9fc; border-right:1px solid #e1e8ed; overflow-y:auto; }
+.modal-info .row { padding:7px 0; border-bottom:1px solid #eee; font-size:.88em; }
+.modal-info .row strong { display:block; color:#0066CC; margin-bottom:2px; font-size:.85em; }
+.modal-viewer { flex:1; background:#525659; display:flex; flex-direction:column; }
+.modal-viewer iframe { flex:1; width:100%; border:none; background:#fff; }
+.modal-footer { padding:10px 18px; background:#fff; border-top:1px solid #e1e8ed; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.btn-fonte { background:#0066CC; color:#fff; padding:8px 16px; text-decoration:none; border-radius:6px; font-weight:600; font-size:.88em; }
+.btn-fonte:hover { background:#004499; }
+.btn-download { background:#00AA00; color:#fff; padding:8px 16px; text-decoration:none; border-radius:6px; font-weight:600; font-size:.88em; }
+.btn-download:hover { background:#007700; }
+/* Botões de ação na tabela */
+.doc-dl { background:#E8F5E9; color:#007700; margin-left:3px; }
+.doc-dl:hover { background:#007700 !important; color:#fff; }
+.doc-src { background:#F3F4F6; color:#555; margin-left:3px; }
+.doc-src:hover { background:#555 !important; color:#fff; }
+.cell-num { cursor:pointer; }
+.cell-num:hover b { color:#0066CC; text-decoration:underline; }
+.cell-desc { cursor:pointer; }
+.cell-desc:hover { color:#0066CC; }
+table td:last-child { white-space:nowrap; }
+
+/* Página completa de lei */
+.lex-page { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#f0f4f8; z-index:200; overflow-y:auto; }
+.lex-page.show { display:block; }
+.lex-inner { max-width:1300px; margin:0 auto; padding:20px; }
+.lex-hdr { background:linear-gradient(135deg,#00264D,#0066CC); color:#fff; padding:18px 28px; border-radius:10px; margin-bottom:20px; display:flex; align-items:center; gap:16px; }
+.lex-hdr h2 { margin:0; font-size:1.3em; flex:1; }
+.lex-back-btn { background:rgba(255,255,255,.2); border:2px solid rgba(255,255,255,.4); color:#fff; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:600; white-space:nowrap; }
+.lex-back-btn:hover { background:rgba(255,255,255,.35); }
+.lex-body { display:grid; grid-template-columns:350px 1fr; gap:20px; }
+.lex-meta { background:#fff; border-radius:10px; padding:20px; box-shadow:0 2px 10px rgba(0,0,0,.08); height:fit-content; }
+.lex-meta .mr { padding:10px 0; border-bottom:1px solid #f0f0f0; }
+.lex-meta .mr:last-child { border-bottom:none; }
+.lex-meta .ml { font-weight:700; color:#0066CC; font-size:.8em; text-transform:uppercase; letter-spacing:.5px; margin-bottom:3px; }
+.lex-meta .mv { font-size:.95em; color:#333; }
+.lex-pdf-wrap { background:#fff; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,.08); overflow:hidden; display:flex; flex-direction:column; min-height:720px; }
+.lex-pdf-wrap iframe { flex:1; width:100%; border:none; min-height:660px; }
+.lex-footer { padding:14px 18px; background:#f7f9fc; border-top:1px solid #e1e8ed; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.btn-lex-back { background:#555; color:#fff; padding:8px 14px; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:.88em; }
+.btn-lex-back:hover { background:#333; }
+@media(max-width:900px){.lex-body{grid-template-columns:1fr;}.lex-meta{order:2;}.lex-pdf-wrap{min-height:400px;}}
+
+
+@media print { body{background:#fff;} .container{box-shadow:none;} .filter-bar,.tabs{display:none;} .tab-content{display:block;} }
+@media (max-width:900px) { .modal-info{display:none;} .modal{height:95vh;} }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body><div class="container">
+<div class="header">
+  <img class="logo" src="https://abihrj.com.br/wp-content/uploads/2024/08/cropped-Logo-ABIH-RJ-Fundo-Transparente-01-1-300x149-1-2.webp" alt="ABIH-RJ">
+  <h1>PLACAS OBRIGATÓRIAS — Versão ABIH-RJ</h1>
+  <p>Consulta e download das Placas Obrigatórias para a Hotelaria no Rio de Janeiro (Apenas Leis Estaduais e Federais Vigentes)</p>
+  <p class="meta">📅 Última atualização: 02/06/2026 &nbsp;|&nbsp; 📋 Placas Obrigatórias Vigentes</p>
+</div>
+
+<!-- PLACAS OBRIGATÓRIAS CONTENT -->
+<div id="tab-placas" class="tab-content" style="display:block; padding: 35px 40px;">
+  <div class="section">
+    <h2>📋 Placas Obrigatórias para Recepção e Áreas Comuns</h2>
+    
+    <!-- Filtros Placas -->
+    <div class="filter-bar">
+      <h3>🔎 Buscar e Filtrar Placas</h3>
+      <div class="filter-row">
+        <label>Buscar:</label>
+        <input type="text" id="searchPlacas" class="search-input" placeholder="Buscar por assunto, lei, autor ou descrição...">
+        <span class="counter" id="placasCount">24 placas</span>
+        <button class="filter-btn" onclick="clearPlacas()">Limpar filtros</button>
+      </div>
+      <div class="filter-row">
+        <label>Tipo:</label>
+        <button class="filter-btn placa-tipo active" data-pvalue="all">Todas</button>
+        <button class="filter-btn placa-tipo" data-pvalue="placa-fisica">Placa Física Obrigatória</button>
+        <button class="filter-btn placa-tipo" data-pvalue="obrigacao">Obrigação Operacional / Informativa</button>
+      </div>
+      <div class="filter-row">
+        <label>Esfera:</label>
+        <button class="filter-btn placa-esfera active" data-pesfera="all">Todas</button>
+        <button class="filter-btn placa-esfera" data-pesfera="Federal">Federal</button>
+        <button class="filter-btn placa-esfera" data-pesfera="Estadual">Estadual</button>
+      </div>
+    </div>
+<table class="placas-table">
+      <thead>
+        <tr>
+          <th>Assunto</th>
+          <th>Tipo / Esfera</th>
+          <th>Autor</th>
+          <th>Placa</th>
+          <th>Resumo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody><tr><td><b>Certificado Cadastur</b></td><td>Portaria 130/2011 (Fed)</td><td>Pedro Novais (MTur)</td><td class="placa-yes">✓</td><td>Certificado de cadastro afixado em local visível</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_130_2011","Portaria Federal MTUR","130/2011","Pedro Novais","Certificado Cadastur","Federal","Vigente","Hospedagem","https://www.gov.br/turismo")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("portaria_mtur_130_2011", "Portaria Federal MTUR", "130/2011", "Certificado Cadastur", "Federal")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Produtos Fumígenos</b></td><td>Lei Estadual 5.517/2009</td><td>Poder Executivo</td><td class="placa-yes">✓</td><td>Proíbe consumo de cigarros, charutos, cachimbos em locais coletivos</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5517_2009","Lei Estadual","5.517/2009","Poder Executivo","Proibição fumígenos","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_5517_2009", "Lei Estadual", "5.517/2009", "Proibição fumígenos", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Corpo de Bombeiros</b></td><td>Lei Estadual 6.466/2013</td><td>Dr José Luiz Nanci</td><td class="placa-yes">✓</td><td>Selo COSCIP - validade bianual (Art. 3)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6466_2013","Lei Estadual","6.466/2013","Dr José Luiz Nanci","Selo COSCIP","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_6466_2013", "Lei Estadual", "6.466/2013", "Selo COSCIP", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Disque Denúncia Mulher</b></td><td>Lei Estadual 6.961/2015</td><td>Luiz Paulo</td><td class="placa-yes">✓</td><td>Divulgação Disque Denúncia + SOS Mulher ALERJ (Art. 2)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6961_2015","Lei Estadual","6.961/2015","Luiz Paulo","Disque Denúncia Mulher","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_6961_2015", "Lei Estadual", "6.961/2015", "Disque Denúncia Mulher", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Franqueamento da Cozinha</b></td><td>Lei Estadual 6.551/2013</td><td>Comissão Segurança Alimentar</td><td class="placa-yes">✓</td><td>Cozinha franqueada para visitação em hotéis, bares, restaurantes</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6551_2013","Lei Estadual","6.551/2013","Comissão Segurança Alimentar","Franquear cozinha","Estadual","Vigente","Saúde - Alimentação","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_6551_2013", "Lei Estadual", "6.551/2013", "Franquear cozinha", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Hospedagem de Crianças</b></td><td>Lei Estadual 5.123/2007</td><td>Pedro Fernandes</td><td class="placa-yes">✓</td><td>Cartaz 30x30cm PT/EN na recepção sobre proteção criança/adolescente</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5123_2007","Lei Estadual","5.123/2007","Pedro Fernandes","Hospedagem criança","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_5123_2007", "Lei Estadual", "5.123/2007", "Hospedagem criança", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Livro de Reclamações</b></td><td>Lei Estadual 6.613/2013</td><td>Wagner Montes</td><td class="placa-yes">✓</td><td>Livro de reclamações em todos os estabelecimentos (Art. 2)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6613_2013","Lei Estadual","6.613/2013","Wagner Montes","Livro de Reclamações","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_6613_2013", "Lei Estadual", "6.613/2013", "Livro de Reclamações", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Telefones Úteis</b></td><td>Lei Estadual 2.876/1997</td><td>Sivuca</td><td class="placa-yes">✓</td><td>Cartazes com telefones úteis (Arts. 1 e 2)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2876_1997","Lei Estadual","2.876/1997","Sivuca","Telefones Úteis","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_2876_1997", "Lei Estadual", "2.876/1997", "Telefones Úteis", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>PROCON-RJ (Placa)</b></td><td>Lei Estadual 2.487/1995</td><td>Paulo Melo</td><td class="placa-yes">✓</td><td>Endereço e telefone do PROCON-RJ em local visível (Art. 1)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2487_1995","Lei Estadual","2.487/1995","Paulo Melo","PLACA PROCON-RJ","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_2487_1995", "Lei Estadual", "2.487/1995", "PLACA PROCON-RJ", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>SONEGAR É CRIME</b></td><td>Lei Estadual 2.211/1994</td><td>ALERJ</td><td class="placa-yes">✓</td><td>Aviso "SONEGAR É CRIME" em destaque</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2211_1994","Lei Estadual","2.211/1994","ALERJ","SONEGAR É CRIME","Estadual","Vigente","Tributação","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_2211_1994", "Lei Estadual", "2.211/1994", "SONEGAR É CRIME", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Preservativos / Lei Camisinha</b></td><td>Lei Estadual 1.867/1991</td><td>Luiz Cadorna</td><td class="placa-x">X</td><td>Hotéis e motéis devem disponibilizar preservativos para hóspedes</td><td><a class="doc-link" onclick='openDoc("lei_estadual_1867_1991","Lei Estadual","1.867/1991","Luiz Cadorna","Lei da Camisinha","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_1867_1991", "Lei Estadual", "1.867/1991", "Lei da Camisinha", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Preservativos Masc./Fem.</b></td><td>Lei Estadual 4.364/2004</td><td>Carlos Minc</td><td class="placa-x">X</td><td>Venda nos quartos: 3 preservativos masc. e 3 fem. a preço de custo</td><td><a class="doc-link" onclick='openDoc("lei_estadual_4364_2004","Lei Estadual","4.364/2004","Carlos Minc","Preservativos quartos","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_4364_2004", "Lei Estadual", "4.364/2004", "Preservativos quartos", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Folhetos AIDS/DSTs</b></td><td>Lei Estadual 2.929/1998</td><td>Carlos Minc + 4 co-autores</td><td class="placa-yes">✓</td><td>Folhetos sobre prevenção AIDS/DSTs em hotéis e motéis</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2929_1998","Lei Estadual","2.929/1998","Carlos Minc + co-autores","Folhetos AIDS","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_2929_1998", "Lei Estadual", "2.929/1998", "Folhetos AIDS", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Folhetos AIDS/DSTs (compl.)</b></td><td>Lei Estadual 5.977/2011</td><td>Sabino</td><td class="placa-x">X</td><td>Folhetos prevenção AIDS/DSTs em hotéis/motéis (Art. 1)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5977_2011","Lei Estadual","5.977/2011","Sabino","Folhetos AIDS","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_5977_2011", "Lei Estadual", "5.977/2011", "Folhetos AIDS", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Reclamação Consumidores</b></td><td>Portaria MTur 110/2013</td><td>MTur</td><td class="placa-x">X</td><td>Plano Nacional de Turismo - reclamações</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_110_2013","Portaria Federal MTUR","110/2013","Ministério do Turismo","Plano Nacional Turismo","Federal","Vigente","Hospedagem","https://www.gov.br/turismo")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("portaria_mtur_110_2013", "Portaria Federal MTUR", "110/2013", "Plano Nacional Turismo", "Federal")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Segurança Incêndio (Bombeiros)</b></td><td>Portaria CBMERJ 722/2013</td><td>Cel BM Sérgio Simões</td><td class="placa-yes">✓</td><td>Edifícios de reunião de público - acessos com placas visíveis</td><td><a class="doc-link" onclick='openDoc("portaria_cbmerj_722_2013","Portaria CBMERJ","722/2013","Cel BM Sérgio Simões","Segurança contra incêndio","Estadual/CBMERJ","Vigente","Saúde e Segurança","https://www.cbmerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("portaria_cbmerj_722_2013", "Portaria CBMERJ", "722/2013", "Segurança contra incêndio", "Estadual/CBMERJ")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Telefones PROCON+ALERJ</b></td><td>Lei Estadual 5.817/2010</td><td>Paulo Melo</td><td class="placa-x">X</td><td>Telefone/endereço PROCON-RJ + Comissão Defesa Consumidor ALERJ</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5817_2010","Lei Estadual","5.817/2010","Paulo Melo","PROCON + ALERJ","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_5817_2010", "Lei Estadual", "5.817/2010", "PROCON + ALERJ", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Cão-guia (Federal)</b></td><td>Lei Federal 11.126/2005</td><td>Romeu Tuma</td><td class="placa-x">X</td><td>Direito de PCD visual ingressar com cão-guia em estabelecimentos</td><td><a class="doc-link" onclick='openDoc("lei_federal_11126_2005","Lei Federal","11.126/2005","Romeu Tuma","Cão-guia federal","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_federal_11126_2005", "Lei Federal", "11.126/2005", "Cão-guia federal", "Federal")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Proibição de Capacete</b></td><td>Lei Estadual 6.717/2014</td><td>Lucinha</td><td class="placa-yes">✓</td><td>Proíbe ingresso/permanência com capacete ou cobertura facial</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6717_2014","Lei Estadual","6.717/2014","Lucinha","Proibição capacete","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_6717_2014", "Lei Estadual", "6.717/2014", "Proibição capacete", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Acessibilidade PCD/Mob.Red.</b></td><td>Lei Estadual 7.329/2016</td><td>Paulo Melo + Samuel Malafaia + Dionísio Lins</td><td class="placa-yes">✓</td><td>Diretrizes acessibilidade + atendimento intérprete de Libras</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7329_2016","Lei Estadual","7.329/2016","Paulo Melo + Samuel Malafaia + Dionísio Lins","Acessibilidade PCD/Libras","Estadual","Vigente","Acessibilidade","http://alerjln1.alerj.rj.gov.br/contlei.nsf/bc008ecb13dcfc6e03256827006dbbf5/3d7db514ae9f8b0783257ff5005b7b82")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_7329_2016", "Lei Estadual", "7.329/2016", "Acessibilidade PCD/Libras", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Código Defesa Consumidor</b></td><td>Lei Federal 12.291/2010</td><td>Luiz Bittencourt</td><td class="placa-x">X</td><td>Manter exemplar do CDC em local visível</td><td><a class="doc-link" onclick='openDoc("lei_federal_12291_2010","Lei Federal","12.291/2010","Luiz Bittencourt","CDC em local visível","Federal","Vigente","Consumidor","https://www.planalto.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_federal_12291_2010", "Lei Federal", "12.291/2010", "CDC em local visível", "Federal")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Vagas Monitoradas PCD/Idosos</b></td><td>Lei Estadual 9.682/2022</td><td>ALERJ</td><td class="placa-yes">✓</td><td>Placa de sinalização vertical em estacionamentos privados</td><td><a class="doc-link" onclick='openDoc("lei_estadual_9682_2022","Lei Estadual","9.682/2022","ALERJ","Vagas PCD/Idosos","Estadual","Vigente","Acessibilidade","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_9682_2022", "Lei Estadual", "9.682/2022", "Vagas PCD/Idosos", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Escadas Rolantes Acessíveis</b></td><td>Lei Estadual 7.956/2023</td><td>ALERJ</td><td class="placa-x">X</td><td>Cartazes/placas advertência em escadas rolantes</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7956_2023","Lei Estadual","7.956/2023","ALERJ","Escadas rolantes","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_7956_2023", "Lei Estadual", "7.956/2023", "Escadas rolantes", "Estadual")'>🎨 Baixar Placa</button></td></tr>
+<tr><td><b>Símbolo Acessibilidade (Est)</b></td><td>Lei Estadual 10.978/2025</td><td>Julio Rocha + 3 co-autores</td><td class="placa-x">X</td><td>Novo Símbolo Internacional de Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_estadual_10978_2025","Lei Estadual","10.978/2025","Dep. Julio Rocha (Agir)","Símbolo Internacional de Acessibilidade","Estadual","Ativo","Acessibilidade","https://www.alerj.rj.gov.br/Visualizar/Noticia/79597")'>📄 Ver Lei</a><button class="doc-link doc-dl" style="cursor:pointer; border:none; margin-left:5px;" onclick='downloadPlaca("lei_estadual_10978_2025", "Lei Estadual", "10.978/2025", "Símbolo Internacional de Acessibilidade", "Estadual")'>🎨 Baixar Placa</button></td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal com PDF viewer (compartilhado) -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Visualizar Documento</h3>
+      <button class="modal-close" onclick="closeDoc()">Fechar X</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-info">
+        <div class="row"><strong>Tipo de Documento</strong><span id="mTipo">-</span></div>
+        <div class="row"><strong>Número/Ano</strong><span id="mNum">-</span></div>
+        <div class="row"><strong>Autor/Origem</strong><span id="mAutor">-</span></div>
+        <div class="row"><strong>Assunto Principal</strong><span id="mAssunto">-</span></div>
+        <div class="row"><strong>Esfera</strong><span id="mNivel">-</span></div>
+        <div class="row"><strong>Status</strong><span id="mStatus">-</span></div>
+        <div class="row"><strong>Tema</strong><span id="mTema">-</span></div>
+      </div>
+      <div class="modal-viewer">
+        <iframe id="mPdf" src=""></iframe>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="btn-fonte" id="mFonte" href="#" target="_blank">🔗 Ver Fonte Oficial</a>
+      <a class="btn-download" id="mDownload" href="#" download>⬇️ Baixar PDF Oficial</a>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN PLACA CANVAS GENERATOR CONTAINER -->
+<div id="placa-preview-container" style="position: absolute; left: -9999px; top: -9999px;"></div>
+</div>
+
+<!-- DISCLAIMER / AVISO LEGAL -->
+<div style="background:linear-gradient(135deg,#FFF9E6,#FFEBA0); border-left:6px solid #FFC107; padding:14px 22px; margin:0 30px; margin-top:18px; border-radius:6px; font-size:.92em; color:#5a4a00;">
+  <p style="margin-bottom:6px;"><strong>⚠️ AVISO IMPORTANTE — Sobre este sistema</strong></p>
+  <p>Este sistema tem por finalidade reunir, organizar e disponibilizar consulta a <strong>legislações, projetos de lei, decretos, portarias e normas que mencionam ou possuem aplicação aos meios de hospedagem</strong> (hotéis, pousadas, motéis, albergues, flats, resorts e similares) no âmbito do Estado e do Município do Rio de Janeiro, além das normas federais correlatas.</p>
+  <p style="margin-top:6px;">A base é construída a partir de fontes oficiais (ALERJ, Câmara Municipal RJ, Planalto, DOU, MTUR, ABNT, depto. Jurídico HotéisRIO) e atualizada periodicamente. <strong>Por se tratar de um volume extenso e dinâmico de legislação, é possível que algum documento específico não esteja contemplado nesta versão</strong>. Recomendamos sempre validar a informação na fonte oficial antes de qualquer decisão jurídica ou operacional. Sugestões de inclusão ou ajuste podem ser encaminhadas ao departamento jurídico.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('resumo')">📊 Resumo</button>
+  <button class="tab-btn" onclick="showTab('legislacao')">⚖️ Legislação (89)</button>
+  <button class="tab-btn placas" onclick="showTab('placas')">📋 Placas Obrigatórias (24)</button>
+  <button class="tab-btn" onclick="showTab('temas')">🎯 Distribuição por Temas</button>
+</div>
+
+<!-- ABA RESUMO - PAINEL DE CONTROLE -->
+<div id="tab-resumo" class="tab-content active">
+  <div class="section">
+    <h2>📊 Painel de Controle</h2>
+
+    <!-- DASHBOARD GERAL -->
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-number">89</div><div class="stat-label">Documentos na Base</div>
+        <div class="stat-percent">Federal + Estadual + Municipal</div>
+      </div>
+      <div class="stat-card cadastrado">
+        <div class="stat-number">88</div><div class="stat-label">Leis/Decretos Vigentes</div>
+        <div class="stat-percent">Aplicação imediata</div>
+      </div>
+      <div class="stat-card faltando">
+        <div class="stat-number">0</div><div class="stat-label">PLs em Tramitação</div>
+        <div class="stat-percent">Monitoramento ativo</div>
+      </div>
+      <div class="stat-card urgente">
+        <div class="stat-number">24</div><div class="stat-label">Placas Obrigatórias</div>
+        <div class="stat-percent">Catálogo de recepção</div>
+      </div>
+    </div>
+
+    <!-- BREAKDOWN POR ESFERA -->
+    <h3>📍 Distribuição por Esfera</h3>
+    <div class="themes-grid" style="margin-bottom:25px;">
+      <div class="theme-card" style="border-left:5px solid #0066CC;">
+        <h4>🇧🇷 Federal <span class="count">40</span></h4>
+        <p style="font-size:.88em; color:#555;">Lei Geral do Turismo, CDC, Estatuto PCD, Estatuto Idoso, Lei TEA, FNRH-Digital, SBClass, CADASTUR, ISS, Gorjetas, Cão-guia</p>
+      </div>
+      <div class="theme-card" style="border-left:5px solid #9900CC;">
+        <h4>🏛️ Estadual (ALERJ) <span class="count">49</span></h4>
+        <p style="font-size:.88em; color:#555;">5 Leis aprovadas em 2025 + 36 PLs em tramitação + Leis históricas de placas + DEA + Guarda-vidas + Política Estadual de Turismo</p>
+      </div>
+      
+      <div class="theme-card" style="border-left:5px solid #7030A0;">
+        <h4>📋 Normas + Trabalhista <span class="count">9</span></h4>
+        <p style="font-size:.88em; color:#555;">NBR 9050 + NBR 15401 + NBR ISO 21401 + NBR 16534 + Lei 13.419 + Decretos</p>
+      </div>
+    </div>
+
+    <!-- FONTES BIBLIOGRÁFICAS -->
+    <h3>📚 Fontes Bibliográficas e Bases de Consulta</h3>
+    <div style="background:#f7f9fc; border:1px solid #e1e8ed; border-radius:10px; padding:18px;">
+      <p style="margin-bottom:12px; color:#555;">Todos os documentos do sistema foram extraídos, validados e cruzados com as seguintes fontes oficiais:</p>
+
+      <!-- FILTRO FONTES -->
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:14px; padding:10px; background:#fff; border:1px solid #d1dce8; border-radius:8px;">
+        <input type="text" id="searchFontes" placeholder="🔎 Buscar fonte por nome, tipo, URL ou documentos..." style="flex:1; min-width:220px; padding:7px 12px; border:2px solid #ccd5dd; border-radius:6px; font-size:.92em;">
+        <span class="counter" id="fontesCount" style="background:#0066CC;">10 fontes</span>
+        <button class="filter-btn fonte-tipo active" data-fvalue="all">Todas</button>
+        <button class="filter-btn fonte-tipo" data-fvalue="federal">Oficial Federal</button>
+        <button class="filter-btn fonte-tipo" data-fvalue="estadual">Oficial Estadual</button>
+        <button class="filter-btn fonte-tipo" data-fvalue="municipal">Oficial Municipal</button>
+        <button class="filter-btn fonte-tipo" data-fvalue="interna">Interna</button>
+        <button class="filter-btn fonte-tipo" data-fvalue="auxiliar">Repositório auxiliar</button>
+        <button class="filter-btn fonte-tipo" data-fvalue="normativa">Normativa</button>
+      </div>
+
+      <table id="fontesTable" style="margin-bottom:0;">
+        <thead>
+          <tr><th>Fonte</th><th>Tipo</th><th>URL / Localização</th><th>Documentos extraídos</th></tr>
+        </thead>
+        <tbody id="fontesBody">
+          <tr>
+            <td><b>ALERJ — Assembleia Legislativa do RJ</b></td>
+            <td>Oficial Estadual</td>
+            <td><a href="https://www.alerj.rj.gov.br" target="_blank">alerj.rj.gov.br</a><br><a href="https://alerjln1.alerj.rj.gov.br/scpro2327.nsf" target="_blank">SCPRO 2327</a></td>
+            <td>Leis 10.817, 10.954, 10.978, 10.989, 11.002, 7.259, 3.728 + 36 PLs ALERJ</td>
+          </tr>
+          
+          <tr>
+            <td><b>Planalto — Presidência da República</b></td>
+            <td>Oficial Federal</td>
+            <td><a href="https://www.planalto.gov.br" target="_blank">planalto.gov.br</a></td>
+            <td>Lei 11.771, 14.829, 13.146, 10.741, 12.764, 8.078 (CDC), LC 116, Lei 13.419</td>
+          </tr>
+          <tr>
+            <td><b>DOU — Imprensa Nacional</b></td>
+            <td>Oficial Federal</td>
+            <td><a href="https://www.in.gov.br" target="_blank">in.gov.br</a></td>
+            <td>Portarias MTUR 28/2025, 41/2025, 100/2011, 110/2013, 130/2011, 4/2026</td>
+          </tr>
+          <tr>
+            <td><b>Ministério do Turismo</b></td>
+            <td>Oficial Federal</td>
+            <td><a href="https://www.gov.br/turismo" target="_blank">gov.br/turismo</a><br><a href="https://cadastur.turismo.gov.br" target="_blank">CADASTUR</a></td>
+            <td>Plataforma FNRH-D + SBClass + CADASTUR + Diretrizes</td>
+          </tr>
+          <tr>
+            <td><b>Planilha JURÍDICO HotéisRIO</b></td>
+            <td>Interna — Depto Jurídico</td>
+            <td><code>JURÍDICO/PH/MONITORAMENTO LEIS - PLS - DECRETOS 2026.xlsx</code> (19/03/2026)</td>
+            <td>66 PLs ALERJ + 34 PLs Câmara com autores reais e andamento</td>
+          </tr>
+          <tr>
+            <td><b>Planilha PLACAS OBRIGATÓRIAS</b></td>
+            <td>Interna — Depto Jurídico</td>
+            <td><code>JURÍDICO/PH/Placas obrigatórias/PLACAS OBRIGATÓRIAS HOTÉIS.xlsx</code></td>
+            <td>41 placas obrigatórias com autor, esfera e resumo</td>
+          </tr>
+          <tr>
+            <td><b>Portal Diário Oficial Municipal</b></td>
+            <td>Oficial Municipal</td>
+            <td><a href="https://doweb.rio.rj.gov.br" target="_blank">doweb.rio.rj.gov.br</a></td>
+            <td>Decreto Rio 57.505/2026, Decreto 46.748/2019, Decreto 48.980/2021</td>
+          </tr>
+          <tr>
+            <td><b>LegisWeb</b></td>
+            <td>Repositório auxiliar</td>
+            <td><a href="https://www.legisweb.com.br" target="_blank">legisweb.com.br</a></td>
+            <td>LC 270/2024, Lei 10.954/2025, Lei 11.002/2025, Decretos diversos</td>
+          </tr>
+          <tr>
+            <td><b>Leis Municipais</b></td>
+            <td>Repositório auxiliar</td>
+            <td><a href="https://leismunicipais.com.br/prefeitura/rj/rio-de-janeiro" target="_blank">leismunicipais.com.br</a></td>
+            <td>Decreto 29.881/2008 + Código Tributário 691/1984 + Lei 7.876/2023</td>
+          </tr>
+          <tr>
+            <td><b>ABNT — Catálogo Normativo</b></td>
+            <td>Normas técnicas</td>
+            <td><a href="https://www.abntcatalogo.com.br" target="_blank">abntcatalogo.com.br</a></td>
+            <td>NBR 9050:2020 + NBR 15401:2006 + NBR ISO 21401:2018 + NBR 16534:2018</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- COMO USAR O SISTEMA -->
+    <h3 style="margin-top:25px;">🧭 Como usar este painel</h3>
+    <div class="themes-grid">
+      <div class="theme-card">
+        <h4>⚖️ Aba Legislação</h4>
+        <p style="font-size:.9em;">Pesquise os 240 documentos por <b>tipo, nível ou status</b> (com seleção múltipla). Clique em <b>Ver</b> para abrir o PDF íntegro dentro do sistema, com ficha técnica e link para a fonte oficial.</p>
+      </div>
+      <div class="theme-card">
+        <h4>📋 Aba Placas Obrigatórias</h4>
+        <p style="font-size:.9em;">Catálogo de 41 placas para recepção. Coluna <b>Placa</b>: ✓ = texto/placa física obrigatória · X = obrigação correlata (consultar lei). Clique no 📄 PDF para ver a lei.</p>
+      </div>
+      <div class="theme-card">
+        <h4>🎯 Aba Temas</h4>
+        <p style="font-size:.9em;">Visão temática (Acessibilidade, Saúde, Tributação, Turismo, etc.) com contadores por categoria.</p>
+      </div>
+      <div class="theme-card">
+        <h4>🚀 Aba Implementação</h4>
+        <p style="font-size:.9em;">Histórico das 3 fases de importação e cronograma operacional. Conclusão do trabalho com 27.8x de expansão da base original.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABA LEGISLAÇÃO -->
+<div id="tab-legislacao" class="tab-content">
+  <div class="section">
+    <h2>⚖️ Banco de Legislação Completo</h2>
+    <p style="margin-bottom:14px;">Use os filtros para pesquisar por tipo, nível ou status. Clique em <b>Ver</b> para abrir o PDF da lei integralmente dentro do sistema.</p>
+
+    <div class="filter-bar">
+      <div class="filter-row">
+        <input type="text" class="search-input" id="searchBox" placeholder="🔎 Buscar por número, autor, assunto ou tema...">
+        <span class="counter" id="resultCount">240 documentos</span>
+        <button class="filter-btn" onclick="clearAllFilters()" style="background:#FF6B6B; color:#fff; border-color:#FF6B6B;">🗑️ Limpar filtros</button>
+      </div>
+      <div style="background:#FFF9E6; border-left:3px solid #FFC107; padding:8px 12px; margin-bottom:10px; border-radius:4px; font-size:.85em; color:#666;">
+        💡 <b>Dica:</b> Você pode selecionar <b>múltiplos filtros</b> simultaneamente em cada categoria. <b>📄 Ver</b> abre o PDF completo nesta janela. <b>📄 Ver</b> em cinza redireciona ao site oficial (PDF em preparação).
+      </div>
+      <div class="filter-row">
+        <label>Tipo:</label>
+        <button class="filter-btn type-lei" data-filter="tipo" data-value="LEI">Lei</button>
+        <button class="filter-btn type-pl" data-filter="tipo" data-value="PL">PL</button>
+        <button class="filter-btn type-lc" data-filter="tipo" data-value="LC">LC/PLC</button>
+        <button class="filter-btn type-dec" data-filter="tipo" data-value="DECRETO">Decreto</button>
+        <button class="filter-btn type-port" data-filter="tipo" data-value="PORTARIA">Portaria</button>
+        <button class="filter-btn type-mp" data-filter="tipo" data-value="MP">Medida Provisória</button>
+      </div>
+      <div class="filter-row">
+        <label>Nível:</label>
+        <button class="filter-btn" data-filter="nivel" data-value="Federal">Federal</button>
+        <button class="filter-btn" data-filter="nivel" data-value="Estadual">Estadual</button>
+        <button class="filter-btn" data-filter="nivel" data-value="Municipal">Municipal</button>
+      </div>
+      <div class="filter-row">
+        <label>Status:</label>
+        <button class="filter-btn" data-filter="status" data-value="Ativo">Ativo (Vigente)</button>
+        <button class="filter-btn" data-filter="status" data-value="Tramitando">Tramitando</button>
+        <button class="filter-btn" data-filter="status" data-value="Arquivado">Arquivado/Prejudicado</button>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto; overflow-y:visible; max-width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.08); border:1px solid #e1e8ed;">
+    <table id="legisTable" style="min-width:1100px; box-shadow:none; border-radius:0; margin-bottom:0;">
+      <thead>
+        <tr>
+          <th style="min-width:75px;">Tipo</th>
+          <th style="min-width:110px;">Número</th>
+          <th style="min-width:180px;">Autor</th>
+          <th style="min-width:280px;">Assunto</th>
+          <th style="min-width:90px;">Nível</th>
+          <th style="min-width:100px;">Status</th>
+          <th style="min-width:140px;">Tema</th>
+          <th style="min-width:180px; text-align:center;">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="legisBody"><tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>11.771/2008</b></td><td>Congresso Nacional</td><td>Lei Geral do Turismo - Política Nacional</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo ✓</span></td><td>Turismo Estrutural</td><td><a class="doc-link" onclick='openDoc("lei_federal_11771_2008","Lei Federal","11.771/2008","Congresso Nacional","Lei Geral do Turismo","Federal","Ativo - já cadastrada","Turismo Estrutural","https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11771.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>14.829/2024</b></td><td>Congresso Nacional / Presidência</td><td>Nova Lei Geral do Turismo (diária 24h + responsabilidade objetiva)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Turismo Estrutural</td><td><a class="doc-link" onclick='openDoc("lei_federal_14829_2024","Lei Federal","14.829/2024","Congresso Nacional","Nova Lei Geral do Turismo - atualiza Lei 11.771/2008","Federal","Ativo desde 15/04/2024","Turismo Estrutural","https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14829.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>15.211/2024</b></td><td>Congresso Nacional</td><td>ECA Digital — proteção de crianças e adolescentes no ambiente digital</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_federal_15211_2024","Lei Federal","15.211/2024","Congresso Nacional","ECA Digital - proteção crianças/adolescentes no ambiente digital","Federal","Ativo desde 02/09/2024","Saúde e Segurança","https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l15211.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>41/2025</b></td><td>Ministro de Estado do Turismo</td><td>Institui a FNRH Digital (substitui ficha em papel)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Hospedagem Digital</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_41_2025","Portaria Federal MTUR","41/2025","Ministro de Estado do Turismo","FNRH Digital","Federal","Vigente desde 21/11/2025","Hospedagem Digital","https://www.in.gov.br/web/dou/-/portaria-mtur-n-41-de-14-de-novembro-de-2025-670238654")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>10.978/2025</b></td><td>Dep. Julio Rocha (Agir)</td><td>Símbolo Internacional de Acessibilidade obrigatório</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_estadual_10978_2025","Lei Estadual","10.978/2025","Dep. Julio Rocha (Agir)","Símbolo Internacional de Acessibilidade","Estadual","Ativo","Acessibilidade","https://www.alerj.rj.gov.br/Visualizar/Noticia/79597")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>10.989/2025</b></td><td>Dep. Julio Rocha (Agir)</td><td>Vídeos promocionais turismo RJ em eventos patrocinados</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Promoção Turística</td><td><a class="doc-link" onclick='openDoc("lei_estadual_10989_2025","Lei Estadual","10.989/2025","Dep. Julio Rocha","Vídeos promocionais turismo","Estadual","Ativo","Promoção Turística","https://www.alerj.rj.gov.br/Visualizar/Noticia/78831")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>10.777/2025</b></td><td>Dep. Carla Machado, Fred Pacheco, Brazão</td><td>Programa "Rotas do Sagrado" — desenvolvimento de circuitos de turismo religioso; cataloga atrativos com potencial turístico</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Promoção Turística</td><td><a class="doc-link" onclick='openDoc("lei_estadual_10777_2025","Lei Estadual","10.777/2025","Dep. Carla Machado + Fred Pacheco + Brazão","Rotas do Sagrado — Turismo Religioso RJ","Estadual","Ativo desde 15/05/2025","Turismo - Promoção Turística","http://www.alerj.rj.gov.br/Visualizar/Noticia/75771")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>10.817/2025</b></td><td>Dep. Bruno Alves Boaretto (PL)</td><td>Doença celíaca - alimentos próprios em eventos</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde - Alimentação</td><td><a class="doc-link" onclick='openDoc("lei_estadual_10817_2025","Lei Estadual","10.817/2025","Dep. Bruno Alves Boaretto","Doença celíaca","Estadual","Ativo","Saúde - Alimentação","https://www.alerj.rj.gov.br/Visualizar/Noticia/77015")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>10.954/2025</b></td><td>Dep. Dr. Deodalto (PL)</td><td>Parcerias hotelaria para descontos à população</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Tributação/Incentivo</td><td><a class="doc-link" onclick='openDoc("lei_estadual_10954_2025","Lei Estadual","10.954/2025","Dep. Dr. Deodalto","Parcerias hotelaria descontos","Estadual","Ativo","Tributação/Incentivo","https://www.legisweb.com.br/legislacao/?id=483696")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>11.002/2025</b></td><td>Dep. Márcio Gualberto + Fred Pacheco</td><td>Corpus Christi como feriado estadual</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Calendário</td><td><a class="doc-link" onclick='openDoc("lei_estadual_11002_2025","Lei Estadual","11.002/2025","Dep. Márcio Gualberto e Fred Pacheco","Corpus Christi feriado estadual","Estadual","Ativo - questionada STF","Calendário Turístico","https://www.legisweb.com.br/legislacao/?id=485344")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.259/2022</b></td><td>ALERJ</td><td>Desfibrilador (DEA) obrigatório em hotéis</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7259_2022","Lei Estadual","7.259/2022","ALERJ","Desfibrilador (DEA) obrigatório","Estadual","Vigente desde 17/03/2022","Saúde e Segurança","https://aplicnt.camara.rj.gov.br/APL/Legislativos/contlei.nsf")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>3.728/2001</b></td><td>ALERJ</td><td>Guarda-vidas obrigatório em piscinas de hotéis</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_3728_2001","Lei Estadual","3.728/2001","ALERJ","Guarda-vidas piscinas","Estadual","Vigente","Saúde e Segurança","https://alerjln1.alerj.rj.gov.br/CONTLEI.NSF/c8aa0900025feef6032564ec0060dfff/1d45d16fcae926ce03256b25004da608")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>13.146/2015</b></td><td>Congresso Nacional</td><td>Estatuto da PCD - Lei Brasileira de Inclusão (10% UH acessíveis)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_federal_13146_2015","Lei Federal","13.146/2015","Congresso Nacional","Estatuto da PCD","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="DECRETO" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-decreto">DEC</span></td><td><b>9.296/2018</b></td><td>Presidência da República</td><td>Regulamenta Estatuto PCD em hospedagem (10% UH)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("decreto_federal_9296_2018","Decreto Federal","9.296/2018","Presidência da República","Regulamenta Estatuto PCD","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9296.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>10.741/2003</b></td><td>Congresso Nacional</td><td>Estatuto do Idoso</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Inclusão - Idoso</td><td><a class="doc-link" onclick='openDoc("lei_federal_10741_2003","Lei Federal","10.741/2003","Congresso Nacional","Estatuto do Idoso","Federal","Vigente","Inclusão - Idoso","https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>12.764/2012</b></td><td>Congresso Nacional</td><td>Política Nacional do TEA (Lei Berenice Piana)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade-TEA</td><td><a class="doc-link" onclick='openDoc("lei_federal_12764_2012","Lei Federal","12.764/2012","Congresso Nacional","Política Nacional TEA","Federal","Vigente","Acessibilidade - TEA","https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>11.977/2009</b></td><td>Congresso Nacional</td><td>Base legal histórica FNRH digital</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Hospedagem Digital</td><td><a class="doc-link" onclick='openDoc("lei_federal_11977_2009","Lei Federal","11.977/2009","Congresso Nacional","FNRH base legal","Federal","Vigente","Hospedagem Digital","https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l11977.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>28/2025</b></td><td>Ministro do Turismo</td><td>Novas regras de entrada/saída em hospedagem</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Hospedagem</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_28_2025","Portaria Federal MTUR","28/2025","Ministro do Turismo","Check-in/Check-out","Federal","Vigente","Hospedagem - Operacional","https://www.gov.br/turismo/pt-br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>100/2011</b></td><td>Ministério do Turismo</td><td>SBClass - Classificação de hotéis (1-5 estrelas)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Classificação</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_100_2011","Portaria Federal MTUR","100/2011","Ministério do Turismo","SBClass","Federal","Vigente","Classificação","https://www.gov.br/turismo/pt-br/centrais-de-conteudo-/publicacoes/portarias-arquivos/portaria-2011/PORTARIA-N-100c-DE-16-DE-JUNHO-DE-2011")'>📄 Ver</a></td></tr>
+<tr data-tipo="DECRETO" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-decreto">DEC</span></td><td><b>7.381/2010</b></td><td>Presidência da República</td><td>Regulamenta Lei Geral do Turismo (CADASTUR)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Regulamentação</td><td><a class="doc-link" onclick='openDoc("decreto_federal_7381_2010","Decreto Federal","7.381/2010","Presidência da República","Regulamenta Lei 11.771","Federal","Vigente","Regulamentação","https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/decreto/d7381.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LC" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lc">LC</span></td><td><b>214/2025</b></td><td>Congresso Nacional / Presidência</td><td>Reforma Tributária — Hotelaria: redução de 40% nas alíquotas IBS/CBS para hospedagem; regime especial de créditos para o setor hoteleiro (arts. 277-283)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Tributação - Reforma Tributária</td><td><a class="doc-link" onclick='openDoc("lc_federal_214_2025","Lei Complementar Federal","214/2025","Congresso Nacional","Reforma Tributária - Hotelaria (IBS/CBS 40% redução)","Federal","Ativo desde 16/01/2025","Tributação - Reforma Tributária","https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LC" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lc">LC</span></td><td><b>116/2003</b></td><td>Congresso Nacional</td><td>Lista de Serviços ISS - item 9.01 hospedagem</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Tributação</td><td><a class="doc-link" onclick='openDoc("lc_complementar_116_2003","Lei Complementar Federal","116/2003","Congresso Nacional","ISS item 9.01","Federal","Vigente","Tributação","https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>8.078/1990</b></td><td>Congresso Nacional</td><td>Código de Defesa do Consumidor (CDC)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Consumidor</td><td><a class="doc-link" onclick='openDoc("lei_federal_8078_1990","Lei Federal","8.078/1990","Congresso Nacional","Código Defesa Consumidor","Federal","Vigente","Consumidor","https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>13.419/2017</b></td><td>Congresso Nacional</td><td>Regulamenta gorjetas em hotéis, bares e restaurantes</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Trabalho</td><td><a class="doc-link" onclick='openDoc("lei_federal_13419_2017","Lei Federal","13.419/2017","Congresso Nacional","Gorjetas","Federal","Vigente","Trabalho - Gorjetas","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13419.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>11.126/2005</b></td><td>Romeu Tuma</td><td>Direito do PCD visual com cão-guia (federal)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_federal_11126_2005","Lei Federal","11.126/2005","Romeu Tuma","Cão-guia federal","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>12.291/2010</b></td><td>Luiz Bittencourt</td><td>Exemplar do CDC em local visível</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Consumidor</td><td><a class="doc-link" onclick='openDoc("lei_federal_12291_2010","Lei Federal","12.291/2010","Luiz Bittencourt","CDC em local visível","Federal","Vigente","Consumidor","https://www.planalto.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>130/2011</b></td><td>Pedro Novais</td><td>Certificado CADASTUR - afixação obrigatória</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Hospedagem</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_130_2011","Portaria Federal MTUR","130/2011","Pedro Novais","Certificado Cadastur","Federal","Vigente","Hospedagem","https://www.gov.br/turismo")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>110/2013</b></td><td>Ministério do Turismo</td><td>Plano Nacional Turismo - reclamações consumidores</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Hospedagem</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_110_2013","Portaria Federal MTUR","110/2013","Ministério do Turismo","Plano Nacional Turismo","Federal","Vigente","Hospedagem","https://www.gov.br/turismo")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>4/2026</b></td><td>Ministro do Turismo</td><td>Atualização FNRH-D 2026</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Hospedagem Digital</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_4_2026","Portaria Federal MTUR","4/2026","Ministro do Turismo","Atualização FNRH 2026","Federal","Vigente","Hospedagem Digital","https://www.in.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>9.811/2022</b></td><td>ALERJ</td><td>Política Estadual de Turismo do RJ</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Turismo</td><td><a class="doc-link" onclick='openDoc("lei_estadual_9811_2022","Lei Estadual","9.811/2022","ALERJ","Política Estadual Turismo","Estadual","Vigente","Turismo Estrutural","https://www.legisweb.com.br/legislacao/?id=435690")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>9.682/2022</b></td><td>ALERJ</td><td>Vagas monitoradas PCD/Idosos (PLACA)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_estadual_9682_2022","Lei Estadual","9.682/2022","ALERJ","Vagas PCD/Idosos","Estadual","Vigente","Acessibilidade","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.956/2023</b></td><td>ALERJ</td><td>Placas escadas rolantes - advertência</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7956_2023","Lei Estadual","7.956/2023","ALERJ","Escadas rolantes","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.329/2016</b></td><td>Paulo Melo + Samuel Malafaia + Dionísio Lins</td><td>Diretrizes acessibilidade + Libras</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7329_2016","Lei Estadual","7.329/2016","Paulo Melo + Samuel Malafaia + Dionísio Lins","Acessibilidade PCD/Libras","Estadual","Vigente","Acessibilidade","http://alerjln1.alerj.rj.gov.br/contlei.nsf/bc008ecb13dcfc6e03256827006dbbf5/3d7db514ae9f8b0783257ff5005b7b82")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>6.961/2015</b></td><td>Luiz Paulo</td><td>Disque Denúncia Mulher + SOS Mulher (PLACA)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6961_2015","Lei Estadual","6.961/2015","Luiz Paulo","Disque Denúncia Mulher","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>6.717/2014</b></td><td>Lucinha</td><td>Proibição de capacete/cobertura facial</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6717_2014","Lei Estadual","6.717/2014","Lucinha","Proibição capacete","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>6.613/2013</b></td><td>Wagner Montes</td><td>Livro de Reclamações obrigatório</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Consumidor</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6613_2013","Lei Estadual","6.613/2013","Wagner Montes","Livro de Reclamações","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>6.551/2013</b></td><td>Comissão Segurança Alimentar</td><td>Franqueamento de cozinhas para visitação</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde-Alimentação</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6551_2013","Lei Estadual","6.551/2013","Comissão Segurança Alimentar","Franquear cozinha","Estadual","Vigente","Saúde - Alimentação","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>6.466/2013</b></td><td>Dr José Luiz Nanci</td><td>Selo COSCIP (Corpo de Bombeiros)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6466_2013","Lei Estadual","6.466/2013","Dr José Luiz Nanci","Selo COSCIP","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>5.977/2011</b></td><td>Sabino</td><td>Folhetos AIDS/DSTs em hotéis (compl.)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5977_2011","Lei Estadual","5.977/2011","Sabino","Folhetos AIDS/DSTs","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>5.817/2010</b></td><td>Paulo Melo</td><td>Telefones PROCON + Comissão Consumidor ALERJ</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Consumidor</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5817_2010","Lei Estadual","5.817/2010","Paulo Melo","PROCON + ALERJ","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>5.517/2009</b></td><td>Poder Executivo</td><td>Proibição produtos fumígenos</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5517_2009","Lei Estadual","5.517/2009","Poder Executivo","Proibição fumígenos","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>5.123/2007</b></td><td>Pedro Fernandes</td><td>Hospedagem criança/adolescente - cartaz 30x30</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5123_2007","Lei Estadual","5.123/2007","Pedro Fernandes","Hospedagem criança","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>4.364/2004</b></td><td>Carlos Minc</td><td>Preservativos masc./fem. nos quartos</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde</td><td><a class="doc-link" onclick='openDoc("lei_estadual_4364_2004","Lei Estadual","4.364/2004","Carlos Minc","Preservativos quartos","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>2.929/1998</b></td><td>Carlos Minc + Heloneida Studart + Marcelo Dias + Neirobis Nagae + Tania Rodrigues</td><td>Folhetos AIDS/DSTs em hotéis e motéis</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2929_1998","Lei Estadual","2.929/1998","Carlos Minc + co-autores","Folhetos AIDS","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>2.876/1997</b></td><td>Sivuca</td><td>Cartazes Telefones Úteis</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2876_1997","Lei Estadual","2.876/1997","Sivuca","Telefones Úteis","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>2.487/1995</b></td><td>Paulo Melo</td><td>Placa PROCON-RJ obrigatória</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Consumidor</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2487_1995","Lei Estadual","2.487/1995","Paulo Melo","PLACA PROCON-RJ","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>2.211/1994</b></td><td>ALERJ</td><td>Aviso "SONEGAR É CRIME"</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Tributação</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2211_1994","Lei Estadual","2.211/1994","ALERJ","SONEGAR É CRIME","Estadual","Vigente","Tributação","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>1.867/1991</b></td><td>Luiz Cadorna</td><td>Lei da Camisinha - preservativos hotéis/motéis</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde</td><td><a class="doc-link" onclick='openDoc("lei_estadual_1867_1991","Lei Estadual","1.867/1991","Luiz Cadorna","Lei da Camisinha","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LC" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lc">LC</span></td><td><b>41/1999</b></td><td>ALERJ</td><td>Hotel-Residência - licenciamento e operação</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Licenciamento</td><td><a class="doc-link" onclick='openDoc("lc_estadual_41_1999","Lei Complementar Estadual","41/1999","ALERJ","Hotel-Residência","Estadual","Vigente","Licenciamento","https://e.camara.rj.gov.br/Arquivo/Documents/legislacao/html/C411999.html")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>722/2013</b></td><td>Cel BM Sérgio Simões (CBMERJ)</td><td>Segurança incêndio - placas casas noturnas</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("portaria_cbmerj_722_2013","Portaria CBMERJ","722/2013","Cel BM Sérgio Simões","Segurança contra incêndio","Estadual/CBMERJ","Vigente","Saúde e Segurança","https://www.cbmerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="DECRETO" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-decreto">DEC</span></td><td><b>50.133/2026</b></td><td>Governador Cláudio Castro</td><td>Atos administrativos DOE-RJ 03/02/2026</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Administrativo</td><td><a class="doc-link" onclick='openDoc("decreto_estadual_50133_2026","Decreto Estadual","50.133/2026","Governador Cláudio Castro","Atos administrativos","Estadual","Vigente","Administrativo","https://www.imprensaoficial.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="DECRETO" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-decreto">DEC</span></td><td><b>50.237/2026</b></td><td>Gov. Cláudio Castro</td><td>Programa "Vivências do Rio Rural" — turismo rural estadual; Selo de Turismo Rural para meios de hospedagem, pousadas rurais, produtores e agricultores familiares</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Turismo Rural</td><td><a class="doc-link" onclick='openDoc("decreto_estadual_50237_2026","Decreto Estadual","50.237/2026","Governador Cláudio Castro","Programa Vivências do Rio Rural — Turismo Rural","Estadual","Ativo desde 19/03/2026","Turismo Rural / Hospedagem","https://www.legisweb.com.br/legislacao/?id=492822")'>📄 Ver</a></td></tr>
+<tr data-tipo="DECRETO" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-decreto">DEC</span></td><td><b>50.238/2026</b></td><td>Governador Cláudio Castro</td><td>Regulamenta excursões turísticas no âmbito do Estado — Lei 4.315/2004</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Turismo</td><td><a class="doc-link" onclick='openDoc("decreto_estadual_50238_2026","Decreto Estadual","50.238/2026","Governador Cláudio Castro","Regulamenta excursões turísticas","Estadual","Vigente","Turismo","https://www.imprensaoficial.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NORMA</span></td><td><b>NBR 9050:2020</b></td><td>ABNT</td><td>Acessibilidade em edificações, mobiliário, equipamentos</td><td><span class="badge b-federal">Normativa</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("nbr_9050_2020","Norma Técnica ABNT","NBR 9050:2020","ABNT","Acessibilidade edificações","Normativa","Vigente","Acessibilidade","https://www.abntcatalogo.com.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NORMA</span></td><td><b>NBR 15401:2006</b></td><td>ABNT</td><td>Sustentabilidade em hospedagem - requisitos</td><td><span class="badge b-federal">Normativa</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Sustentabilidade</td><td><a class="doc-link" onclick='openDoc("nbr_15401_2006","Norma Técnica ABNT","NBR 15401:2006","ABNT","Sustentabilidade hospedagem","Normativa","Vigente","Sustentabilidade","https://www.abntcatalogo.com.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NORMA</span></td><td><b>NBR ISO 21401:2018</b></td><td>ABNT/ISO</td><td>Sustentabilidade hospedagem - Sistema Gestão (ISO)</td><td><span class="badge b-federal">Normativa</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Sustentabilidade</td><td><a class="doc-link" onclick='openDoc("nbr_iso_21401_2018","Norma Técnica ABNT/ISO","NBR ISO 21401:2018","ABNT/ISO","Sustentabilidade ISO","Normativa","Vigente","Sustentabilidade","https://www.abntcatalogo.com.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NORMA</span></td><td><b>NBR 16534:2018</b></td><td>ABNT</td><td>Indicadores de sustentabilidade em hospedagem</td><td><span class="badge b-federal">Normativa</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Sustentabilidade</td><td><a class="doc-link" onclick='openDoc("nbr_16534_2018","Norma Técnica ABNT","NBR 16534:2018","ABNT","Indicadores sustentabilidade","Normativa","Vigente","Sustentabilidade - Métricas","https://www.abntcatalogo.com.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NR</span></td><td><b>NR-01/2024</b></td><td>Ministério do Trabalho e Emprego</td><td>Gerenciamento de Riscos Ocupacionais (GRO) e PGR — atualização 2024 (revisão I)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Vigente</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("nr_01_2024","Norma Regulamentadora","NR-01/2024","Ministério do Trabalho e Emprego","Gerenciamento de Riscos Ocupacionais - GRO e PGR","Federal","Vigente - atualização I (2024)","Saúde e Segurança","https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/normas-regulamentadoras/normas-regulamentadoras-vigentes/norma-regulamentadora-no-1-nr-1")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NR</span></td><td><b>NR-01/2025</b></td><td>Ministério do Trabalho e Emprego</td><td>Gerenciamento de Riscos Ocupacionais (GRO) e PGR — atualização 2025 (revisão III)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Vigente</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("nr_01_2025","Norma Regulamentadora","NR-01/2025","Ministério do Trabalho e Emprego","Gerenciamento de Riscos Ocupacionais - GRO e PGR","Federal","Vigente - atualização III (2025)","Saúde e Segurança","https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/normas-regulamentadoras/normas-regulamentadoras-vigentes/norma-regulamentadora-no-1-nr-1")'>📄 Ver</a></td></tr>
+<tr data-tipo="MP" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-mp">MP</span></td><td><b>928/2020</b></td><td>Presidência da República</td><td>Apoio a microempresas em crise sanitária (cadastrada)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo ✓</span></td><td>Emergência</td><td><a class="doc-link" onclick='openDoc("mp_928_2020","Medida Provisória","928/2020","Presidência da República","Apoio microempresas COVID","Federal","Ativo - JÁ CADASTRADA","Emergência","https://www.planalto.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">PORT</span></td><td><b>177/2010</b></td><td>SNRHos / MTUR</td><td>Entrada/saída hóspedes (cadastrada)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo ✓</span></td><td>Hospedagem</td><td><a class="doc-link" onclick='openDoc("portaria_177_2010","Portaria","177/2010","SNRHos - MTUR","Entrada e saída de hóspedes","Federal","Ativo - JÁ CADASTRADA","Hospedagem - Operacional","https://www.gov.br/turismo")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">CAD</span></td><td><b>CADASTUR</b></td><td>Ministério do Turismo</td><td>Cadastro federal OBRIGATÓRIO de meios de hospedagem (Lei 11.771/2008, Decreto 7.381/2010)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo - Obrigatório</span></td><td>Hospedagem - Cadastro</td><td><a class="doc-link" onclick='openDoc("cadastur_federal","Sistema Federal","CADASTUR","Ministério do Turismo","Cadastro obrigatório de Prestadores de Serviços Turísticos","Federal","Vigente - obrigatoriedade legal","Hospedagem - Cadastro","https://cadastur.turismo.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>11.128/2026</b></td><td>ALERJ</td><td>Verificação fiscal e cadastral de bebidas alcoólicas pelo consumidor</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Consumidor</td><td><a class="doc-link" onclick='openDoc("lei_estadual_11128_2026","Lei Estadual","11.128/2026","ALERJ","Verificação fiscal e cadastral bebidas alcoólicas","Estadual","Vigente desde 18/03/2026","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.405/1985</b></td><td>Dep. Thales Ramalho</td><td>Símbolo Internacional de Acesso obrigatório em locais que possibilitem acesso a PCD</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_federal_7405_1985","Lei Federal","7.405/1985","Dep. Thales Ramalho","Símbolo Internacional de Acesso","Federal","Vigente - Cartilha ABIH-RJ Fev/2015","Acessibilidade","https://www.planalto.gov.br/ccivil_03/leis/l7405.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>13.589/2018</b></td><td>Congresso Nacional</td><td>Manutenção de instalações e equipamentos de climatização (PMOC obrigatório)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_federal_13589_2018","Lei Federal","13.589/2018","Congresso Nacional","PMOC - Plano de Manutenção, Operação e Controle de Climatização","Federal","Vigente desde 04/01/2018","Saúde e Segurança","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13589.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">RDC</span></td><td><b>RDC 216/2004</b></td><td>ANVISA</td><td>Manual de Boas Práticas — requisitos higiênico-sanitários em serviços de alimentação</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("rdc_216_2004","Resolução ANVISA","RDC 216/2004","ANVISA","Manual de Boas Práticas - Serviços de Alimentação","Federal","Vigente - Cartilha ABIH-RJ Dez/2016","Saúde e Segurança","https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2004/res0216_15_09_2004.html")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>1.893/1991</b></td><td>Dep. Alice Tamborindeguy</td><td>Certificado de Potabilidade da Água — manutenção dos padrões em reservatórios</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_1893_1991","Lei Estadual","1.893/1991","Dep. Alice Tamborindeguy","Potabilidade da Água","Estadual","Vigente - Cartilha ABIH-RJ","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>3.166/1997</b></td><td>Dep. Dr. Lauro Monteiro</td><td>Cartaz "DIGA NÃO AO TURISMO SEXUAL" nas portarias de hotéis do Estado RJ</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Hospedagem</td><td><a class="doc-link" onclick='openDoc("lei_estadual_3166_1997","Lei Estadual","3.166/1997","Dep. Dr. Lauro Monteiro","Diga Não ao Turismo Sexual","Estadual","Vigente - Cartilha ABIH-RJ","Hospedagem","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>3.879/2002</b></td><td>ALERJ</td><td>Cardápios em Braille em bares, restaurantes, hotéis e motéis (alterada pela Lei 7.486/2016)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_estadual_3879_2002","Lei Estadual","3.879/2002","ALERJ","Cardápios em Braille","Estadual","Vigente - alterada por 7.486/2016","Acessibilidade","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="DECRETO" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-decreto">DEC</span></td><td><b>40.156/2006</b></td><td>Governo do Estado RJ</td><td>Procedimentos técnicos/administrativos para regularização de usos de água superficial/subterrânea</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Sustentabilidade</td><td><a class="doc-link" onclick='openDoc("decreto_estadual_40156_2006","Decreto Estadual","40.156/2006","Governo Estado RJ","Regularização uso de água","Estadual","Vigente - e-mail ABIH 11/07/2007","Sustentabilidade","https://www.legisweb.com.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>4.999/2007</b></td><td>ALERJ</td><td>Critérios para lavagem e higienização de bandejas, copos, louças e talheres em bares, lanchonetes, restaurantes e hotéis</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_4999_2007","Lei Estadual","4.999/2007","ALERJ","Higienização louças bares/hotéis","Estadual","Vigente desde 07/03/2007","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>5.243/2008</b></td><td>ALERJ / Governador</td><td>Institui a Terça-feira de Carnaval como feriado estadual no RJ</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Calendário</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5243_2008","Lei Estadual","5.243/2008","ALERJ","Feriado Terça-feira de Carnaval","Estadual","Vigente desde 14/05/2008","Calendário","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>5.901/2011</b></td><td>Dep. Marcelo Simão</td><td>Gel sanitizante obrigatório em instituições bancárias, hotéis, restaurantes, bares e similares</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5901_2011","Lei Estadual","5.901/2011","Dep. Marcelo Simão","Gel Sanitizante","Estadual","Vigente desde 24/02/2011","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.047/2015</b></td><td>ALERJ</td><td>Obrigatoriedade de fornecimento de água filtrada (referencia Lei 2.424/1995)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7047_2015","Lei Estadual","7.047/2015","ALERJ","Água filtrada","Estadual","Vigente desde 22/07/2015","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.176/2015</b></td><td>ALERJ</td><td>Cria a Taxa Única de Serviços Tributários do Estado RJ (efeitos suspensos por liminar mar/2016)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Tributação</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7176_2015","Lei Estadual","7.176/2015","ALERJ","Taxa Única Serviços Tributários","Estadual","Efeitos suspensos por liminar 29/03/2016","Tributação","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.267/2016</b></td><td>ALERJ</td><td>Institui pisos salariais no âmbito do Estado do Rio de Janeiro</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Trabalho</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7267_2016","Lei Estadual","7.267/2016","ALERJ","Pisos Salariais Estaduais","Estadual","Vigente desde 26/04/2016","Trabalho","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.326/2016</b></td><td>Gov. Francisco Dornelles</td><td>Cartazes externos em elevadores: "Antes de entrar no elevador, verifique se o mesmo encontra-se parado neste andar". Multa 5.000 UFIR-RJ</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7326_2016","Lei Estadual","7.326/2016","Gov. Francisco Dornelles","Placa Elevadores","Estadual","Vigente desde 07/07/2016","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.486/2016</b></td><td>Gov. Luiz Fernando de Souza (Pezão)</td><td>Altera Lei 3.879/2002 — Cardápios acessíveis (Braille, caracteres ampliados ou áudio descrição) em bares, restaurantes, hotéis, motéis e similares</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7486_2016","Lei Estadual","7.486/2016","Gov. Luiz Fernando de Souza","Cardápios Acessíveis (Altera 3879/02)","Estadual","Vigente desde 08/11/2016","Acessibilidade","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.595/2017</b></td><td>ALERJ</td><td>Dispõe sobre cachaças no Estado do Rio de Janeiro (incentivo gastronômico/turístico)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Turismo</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7595_2017","Lei Estadual","7.595/2017","ALERJ","Cachaças do RJ","Estadual","Vigente","Turismo","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>7.889/2018</b></td><td>ALERJ</td><td>Regulamenta o Serviço de Atendimento ao Consumidor (SAC) no Estado do RJ</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Consumidor</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7889_2018","Lei Estadual","7.889/2018","ALERJ","SAC Estado RJ","Estadual","Vigente desde 06/03/2018","Consumidor","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="PEC" data-nivel="Estadual" data-status="Tramitando"><td><span class="badge b-pl">PEC</span></td><td><b>34/2026</b></td><td>ALERJ</td><td>Veda a instituição, cobrança ou exigência de taxas de turismo, visitação ou permanência pelos municípios do Estado do RJ</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-tramitando">Tramitando</span></td><td>Tributário</td><td><a class="doc-link" onclick='openDoc("pec_34_2026","PEC","34/2026","ALERJ","Veda taxa de turismo nos municípios do RJ","Estadual","Em tramitação","Tributário","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="DECRETO" data-nivel="Estadual" data-status="Ativo"><td><span class="badge b-decreto">DEC</span></td><td><b>50.249/2026</b></td><td>Governo Estado RJ</td><td>Considera facultativo o ponto nas repartições públicas estaduais no dia 02/04/2026 (quinta-feira santa)</td><td><span class="badge b-estadual">Estadual</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Calendário</td><td><a class="doc-link" onclick='openDoc("decreto_estadual_50249_2026","Decreto Estadual","50.249/2026","Governo do Estado do Rio de Janeiro","Ponto facultativo estadual — quinta-feira santa 2026","Estadual","Ativo","Calendário","https://www.alerj.rj.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>15.371/2026</b></td><td>Congresso Nacional</td><td>Amplia a licença-paternidade gradualmente até 20 dias e cria o salário-paternidade como benefício previdenciário pago durante o afastamento</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Trabalhista</td><td><a class="doc-link" onclick='openDoc("lei_federal_15371_2026","Lei Federal","15.371/2026","Congresso Nacional","Licença-paternidade até 20 dias + salário-paternidade previdenciário","Federal","Ativo","Trabalhista","https://www.planalto.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>15.377/2026</b></td><td>Congresso Nacional</td><td>Altera a CLT: obriga empregadores a informar trabalhadores sobre campanhas de vacinação, direito a exames preventivos (HPV, câncer)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_federal_15377_2026","Lei Federal","15.377/2026","Congresso Nacional","Informação vacinação e exames preventivos para trabalhadores — CLT","Federal","Ativo","Saúde e Segurança","https://www.planalto.gov.br")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>13.419/2017 (DOU)</b></td><td>Congresso Nacional</td><td>Texto íntegro DOU — rateio obrigatório de gorjetas entre empregados de hotéis, bares e restaurantes (gorjetas integram a remuneração)</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Trabalhista</td><td><a class="doc-link" onclick='openDoc("lei_federal_13419_2017_b","Lei Federal","13.419/2017","Congresso Nacional","Rateio gorjetas — hotéis, bares e restaurantes (texto íntegro DOU)","Federal","Ativo","Trabalhista","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13419.htm")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NR</span></td><td><b>NR-15 + NR-16 / 2025</b></td><td>Min. Trabalho e Emprego</td><td>Atualiza NR-15 (insalubridade) e NR-16 (periculosidade): laudos técnicos devem ser disponibilizados a trabalhadores e sindicatos — impacto para camareiras</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("nr_15_16_atualizacao_2026","Portaria/NR","NR-15 + NR-16 / Portaria 2021/2025","Ministério do Trabalho e Emprego","Insalubridade e periculosidade — laudos técnicos obrigatórios para trabalhadores hoteleiros","Federal","Ativo","Saúde e Segurança","https://www.gov.br/trabalho-e-emprego")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NR</span></td><td><b>NR-01 / 2024</b></td><td>Min. Trabalho e Emprego</td><td>NR-01 atualizada 2024 — Disposições Gerais e Gerenciamento de Riscos Ocupacionais (GRO): identificação, avaliação e controle de riscos no trabalho</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("nr_01_atualizada_2024","Norma Regulamentadora","NR-01 / 2024","Ministério do Trabalho e Emprego","NR-01 — Disposições Gerais e Gerenciamento de Riscos Ocupacionais (versão 2024)","Federal","Ativo","Saúde e Segurança","https://www.gov.br/trabalho-e-emprego")'>📄 Ver</a></td></tr>
+<tr data-tipo="PORTARIA" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-portaria">NR</span></td><td><b>NR-01 / 2025</b></td><td>Min. Trabalho e Emprego</td><td>NR-01 atualizada 2025 — Disposições Gerais e Gerenciamento de Riscos Ocupacionais (GRO): versão mais recente com ajustes e complementações</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("nr_01_atualizada_2025","Norma Regulamentadora","NR-01 / 2025","Ministério do Trabalho e Emprego","NR-01 — Disposições Gerais e Gerenciamento de Riscos Ocupacionais (versão 2025)","Federal","Ativo","Saúde e Segurança","https://www.gov.br/trabalho-e-emprego")'>📄 Ver</a></td></tr>
+<tr data-tipo="LEI" data-nivel="Federal" data-status="Ativo"><td><span class="badge b-lei">LEI</span></td><td><b>15.211/2025</b></td><td>Congresso Nacional</td><td>ECA Digital — atualiza o Estatuto da Criança e do Adolescente para o ambiente digital: proteção de crianças e adolescentes em meios eletrônicos e plataformas, com obrigações para estabelecimentos de hospedagem</td><td><span class="badge b-federal">Federal</span></td><td><span class="badge b-ativo">Ativo</span></td><td>Saúde e Segurança</td><td><a class="doc-link" onclick='openDoc("lei_federal_15211_2025","Lei Federal","15.211/2025","Congresso Nacional","ECA Digital — proteção de crianças e adolescentes no ambiente digital","Federal","Ativo","Saúde e Segurança","https://www.planalto.gov.br")'>📄 Ver</a></td></tr></tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ABA PLACAS OBRIGATÓRIAS -->
+<div id="tab-placas" class="tab-content">
+  <div class="section">
+    <h2 style="color:#FF6B00; border-bottom-color:#FF6B00;">📋 Placas Obrigatórias para Recepções de Hotéis</h2>
+    <p style="margin-bottom:14px;">Fonte: <code>JURÍDICO/PH/Placas obrigatórias/PLACAS OBRIGATÓRIAS HOTÉIS - VALENDO.xlsx</code> — Seleção de leis municipais, estaduais e federais identificadas pelo departamento jurídico HotéisRIO.</p>
+
+    <!-- LEGENDA -->
+    <div style="background:#FFF9E6; border:2px solid #FFC107; border-radius:10px; padding:15px; margin-bottom:18px;">
+      <h3 style="color:#B26A00; margin-bottom:10px; padding-bottom:6px; border-bottom:1px solid #FFC107;">📖 Legenda dos Símbolos da Coluna "Placa"</h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px;">
+        <div>
+          <span class="placa-yes" style="font-size:1.4em;">✓</span>
+          <strong style="color:#00AA00;">PLACA FÍSICA OBRIGATÓRIA</strong>
+          <p style="font-size:.88em; color:#555; margin-top:4px;">A lei exige a afixação de uma placa, cartaz, aviso ou texto físico em local visível na recepção ou áreas do hotel. Compliance direto: instalar a placa.</p>
+        </div>
+        <div>
+          <span class="placa-x" style="font-size:1.4em;">X</span>
+          <strong style="color:#666;">OBRIGAÇÃO CORRELATA</strong>
+          <p style="font-size:.88em; color:#555; margin-top:4px;">A lei foi mapeada pelo jurídico como exigência aplicável a hotéis, mas <b>não exige placa em si</b> — exige conduta (ex: oferecer preservativos, ter cardápio em Braille, manter exemplar de lei disponível). Estas leis aparecem também na aba <b>Legislação</b>.</p>
+        </div>
+      </div>
+      <div style="margin-top:10px; padding:8px 12px; background:#fff; border-radius:5px; font-size:.85em; color:#444;">
+        💡 <b>Exemplos de "X" (não é placa, é obrigação):</b> Lei da Camisinha (preservativos disponíveis), Cardápio em Braille (item físico no menu), CDC em local visível (exemplar disponível), Cão-guia (permitir acesso).
+      </div>
+    </div>
+
+    <!-- FILTRO PLACAS -->
+    <div class="filter-bar" style="background:#FFF3E0; border-color:#FF9800;">
+      <div class="filter-row">
+        <input type="text" class="search-input" id="searchPlacas" placeholder="🔎 Buscar placa por assunto, lei, autor ou número..." style="border-color:#FF9800;">
+        <span class="counter" id="placasCount" style="background:#FF6B00;">41 placas</span>
+        <button class="filter-btn" onclick="clearPlacas()" style="background:#FF6B6B; color:#fff; border-color:#FF6B6B;">🗑️ Limpar</button>
+      </div>
+      <div class="filter-row">
+        <label style="color:#B26A00;">Tipo:</label>
+        <button class="filter-btn placa-tipo" data-pvalue="all">Todas</button>
+        <button class="filter-btn placa-tipo" data-pvalue="placa-fisica">✓ Apenas placas físicas</button>
+        <button class="filter-btn placa-tipo" data-pvalue="obrigacao">X Apenas obrigações correlatas</button>
+      </div>
+      <div class="filter-row">
+        <label style="color:#B26A00;">Esfera:</label>
+        <button class="filter-btn placa-esfera" data-pesfera="all">Todas</button>
+        <button class="filter-btn placa-esfera" data-pesfera="Federal">Federal</button>
+        <button class="filter-btn placa-esfera" data-pesfera="Estadual">Estadual</button>
+        <button class="filter-btn placa-esfera" data-pesfera="Municipal">Municipal</button>
+      </div>
+    </div>
+
+    <table class="placas-table">
+      <thead>
+        <tr>
+          <th>Assunto</th>
+          <th>Tipo / Esfera</th>
+          <th>Autor</th>
+          <th>Placa</th>
+          <th>Resumo</th>
+          <th>PDF</th>
+        </tr>
+      </thead>
+      <tbody><tr><td><b>Certificado Cadastur</b></td><td>Portaria 130/2011 (Fed)</td><td>Pedro Novais (MTur)</td><td class="placa-yes">✓</td><td>Certificado de cadastro afixado em local visível</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_130_2011","Portaria Federal MTUR","130/2011","Pedro Novais","Certificado Cadastur","Federal","Vigente","Hospedagem","https://www.gov.br/turismo")'>📄</a></td></tr>
+<tr><td><b>Produtos Fumígenos</b></td><td>Lei Estadual 5.517/2009</td><td>Poder Executivo</td><td class="placa-yes">✓</td><td>Proíbe consumo de cigarros, charutos, cachimbos em locais coletivos</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5517_2009","Lei Estadual","5.517/2009","Poder Executivo","Proibição fumígenos","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Corpo de Bombeiros</b></td><td>Lei Estadual 6.466/2013</td><td>Dr José Luiz Nanci</td><td class="placa-yes">✓</td><td>Selo COSCIP - validade bianual (Art. 3)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6466_2013","Lei Estadual","6.466/2013","Dr José Luiz Nanci","Selo COSCIP","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Disque Denúncia Mulher</b></td><td>Lei Estadual 6.961/2015</td><td>Luiz Paulo</td><td class="placa-yes">✓</td><td>Divulgação Disque Denúncia + SOS Mulher ALERJ (Art. 2)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6961_2015","Lei Estadual","6.961/2015","Luiz Paulo","Disque Denúncia Mulher","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Franqueamento da Cozinha</b></td><td>Lei Estadual 6.551/2013</td><td>Comissão Segurança Alimentar</td><td class="placa-yes">✓</td><td>Cozinha franqueada para visitação em hotéis, bares, restaurantes</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6551_2013","Lei Estadual","6.551/2013","Comissão Segurança Alimentar","Franquear cozinha","Estadual","Vigente","Saúde - Alimentação","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Hospedagem de Crianças</b></td><td>Lei Estadual 5.123/2007</td><td>Pedro Fernandes</td><td class="placa-yes">✓</td><td>Cartaz 30x30cm PT/EN na recepção sobre proteção criança/adolescente</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5123_2007","Lei Estadual","5.123/2007","Pedro Fernandes","Hospedagem criança","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Livro de Reclamações</b></td><td>Lei Estadual 6.613/2013</td><td>Wagner Montes</td><td class="placa-yes">✓</td><td>Livro de reclamações em todos os estabelecimentos (Art. 2)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6613_2013","Lei Estadual","6.613/2013","Wagner Montes","Livro de Reclamações","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Telefones Úteis</b></td><td>Lei Estadual 2.876/1997</td><td>Sivuca</td><td class="placa-yes">✓</td><td>Cartazes com telefones úteis (Arts. 1 e 2)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2876_1997","Lei Estadual","2.876/1997","Sivuca","Telefones Úteis","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>PROCON-RJ (Placa)</b></td><td>Lei Estadual 2.487/1995</td><td>Paulo Melo</td><td class="placa-yes">✓</td><td>Endereço e telefone do PROCON-RJ em local visível (Art. 1)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2487_1995","Lei Estadual","2.487/1995","Paulo Melo","PLACA PROCON-RJ","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>SONEGAR É CRIME</b></td><td>Lei Estadual 2.211/1994</td><td>ALERJ</td><td class="placa-yes">✓</td><td>Aviso "SONEGAR É CRIME" em destaque</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2211_1994","Lei Estadual","2.211/1994","ALERJ","SONEGAR É CRIME","Estadual","Vigente","Tributação","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Preservativos / Lei Camisinha</b></td><td>Lei Estadual 1.867/1991</td><td>Luiz Cadorna</td><td class="placa-x">X</td><td>Hotéis e motéis devem disponibilizar preservativos para hóspedes</td><td><a class="doc-link" onclick='openDoc("lei_estadual_1867_1991","Lei Estadual","1.867/1991","Luiz Cadorna","Lei da Camisinha","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Preservativos Masc./Fem.</b></td><td>Lei Estadual 4.364/2004</td><td>Carlos Minc</td><td class="placa-x">X</td><td>Venda nos quartos: 3 preservativos masc. e 3 fem. a preço de custo</td><td><a class="doc-link" onclick='openDoc("lei_estadual_4364_2004","Lei Estadual","4.364/2004","Carlos Minc","Preservativos quartos","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Folhetos AIDS/DSTs</b></td><td>Lei Estadual 2.929/1998</td><td>Carlos Minc + 4 co-autores</td><td class="placa-yes">✓</td><td>Folhetos sobre prevenção AIDS/DSTs em hotéis e motéis</td><td><a class="doc-link" onclick='openDoc("lei_estadual_2929_1998","Lei Estadual","2.929/1998","Carlos Minc + co-autores","Folhetos AIDS","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Folhetos AIDS/DSTs (compl.)</b></td><td>Lei Estadual 5.977/2011</td><td>Sabino</td><td class="placa-x">X</td><td>Folhetos prevenção AIDS/DSTs em hotéis/motéis (Art. 1)</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5977_2011","Lei Estadual","5.977/2011","Sabino","Folhetos AIDS","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Reclamação Consumidores</b></td><td>Portaria MTur 110/2013</td><td>MTur</td><td class="placa-x">X</td><td>Plano Nacional de Turismo - reclamações</td><td><a class="doc-link" onclick='openDoc("portaria_mtur_110_2013","Portaria Federal MTUR","110/2013","Ministério do Turismo","Plano Nacional Turismo","Federal","Vigente","Hospedagem","https://www.gov.br/turismo")'>📄</a></td></tr>
+<tr><td><b>Segurança Incêndio (Bombeiros)</b></td><td>Portaria CBMERJ 722/2013</td><td>Cel BM Sérgio Simões</td><td class="placa-yes">✓</td><td>Edifícios de reunião de público - acessos com placas visíveis</td><td><a class="doc-link" onclick='openDoc("portaria_cbmerj_722_2013","Portaria CBMERJ","722/2013","Cel BM Sérgio Simões","Segurança contra incêndio","Estadual/CBMERJ","Vigente","Saúde e Segurança","https://www.cbmerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Telefones PROCON+ALERJ</b></td><td>Lei Estadual 5.817/2010</td><td>Paulo Melo</td><td class="placa-x">X</td><td>Telefone/endereço PROCON-RJ + Comissão Defesa Consumidor ALERJ</td><td><a class="doc-link" onclick='openDoc("lei_estadual_5817_2010","Lei Estadual","5.817/2010","Paulo Melo","PROCON + ALERJ","Estadual","Vigente","Consumidor","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Cão-guia (Federal)</b></td><td>Lei Federal 11.126/2005</td><td>Romeu Tuma</td><td class="placa-x">X</td><td>Direito de PCD visual ingressar com cão-guia em estabelecimentos</td><td><a class="doc-link" onclick='openDoc("lei_federal_11126_2005","Lei Federal","11.126/2005","Romeu Tuma","Cão-guia federal","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br")'>📄</a></td></tr>
+<tr><td><b>Proibição de Capacete</b></td><td>Lei Estadual 6.717/2014</td><td>Lucinha</td><td class="placa-yes">✓</td><td>Proíbe ingresso/permanência com capacete ou cobertura facial</td><td><a class="doc-link" onclick='openDoc("lei_estadual_6717_2014","Lei Estadual","6.717/2014","Lucinha","Proibição capacete","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Acessibilidade PCD/Mob.Red.</b></td><td>Lei Estadual 7.329/2016</td><td>Paulo Melo + Samuel Malafaia + Dionísio Lins</td><td class="placa-yes">✓</td><td>Diretrizes acessibilidade + atendimento intérprete de Libras</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7329_2016","Lei Estadual","7.329/2016","Paulo Melo + Samuel Malafaia + Dionísio Lins","Acessibilidade PCD/Libras","Estadual","Vigente","Acessibilidade","http://alerjln1.alerj.rj.gov.br/contlei.nsf/bc008ecb13dcfc6e03256827006dbbf5/3d7db514ae9f8b0783257ff5005b7b82")'>📄</a></td></tr>
+<tr><td><b>Código Defesa Consumidor</b></td><td>Lei Federal 12.291/2010</td><td>Luiz Bittencourt</td><td class="placa-x">X</td><td>Manter exemplar do CDC em local visível</td><td><a class="doc-link" onclick='openDoc("lei_federal_12291_2010","Lei Federal","12.291/2010","Luiz Bittencourt","CDC em local visível","Federal","Vigente","Consumidor","https://www.planalto.gov.br")'>📄</a></td></tr>
+<tr><td><b>Vagas Monitoradas PCD/Idosos</b></td><td>Lei Estadual 9.682/2022</td><td>ALERJ</td><td class="placa-yes">✓</td><td>Placa de sinalização vertical em estacionamentos privados</td><td><a class="doc-link" onclick='openDoc("lei_estadual_9682_2022","Lei Estadual","9.682/2022","ALERJ","Vagas PCD/Idosos","Estadual","Vigente","Acessibilidade","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Escadas Rolantes Acessíveis</b></td><td>Lei Estadual 7.956/2023</td><td>ALERJ</td><td class="placa-x">X</td><td>Cartazes/placas advertência em escadas rolantes</td><td><a class="doc-link" onclick='openDoc("lei_estadual_7956_2023","Lei Estadual","7.956/2023","ALERJ","Escadas rolantes","Estadual","Vigente","Saúde e Segurança","https://www.alerj.rj.gov.br")'>📄</a></td></tr>
+<tr><td><b>Símbolo Acessibilidade (Est)</b></td><td>Lei Estadual 10.978/2025</td><td>Julio Rocha + 3 co-autores</td><td class="placa-x">X</td><td>Novo Símbolo Internacional de Acessibilidade</td><td><a class="doc-link" onclick='openDoc("lei_estadual_10978_2025","Lei Estadual","10.978/2025","Dep. Julio Rocha (Agir)","Símbolo Internacional de Acessibilidade","Estadual","Ativo","Acessibilidade","https://www.alerj.rj.gov.br/Visualizar/Noticia/79597")'>📄</a></td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ABA DISTRIBUIÇÃO POR TEMAS -->
+<div id="tab-temas" class="tab-content">
+  <div class="section">
+    <h2>🎯 Distribuição por Temas</h2>
+    <p style="margin-bottom:18px; color:#555;">Cada documento listado é <strong>clicável</strong> — clique no número da lei para abrir o PDF dentro do sistema.</p>
+
+    <div class="themes-grid">
+      <!-- ACESSIBILIDADE -->
+      <div class="theme-card">
+        <h4>♿ Acessibilidade <span class="count">22</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_13146_2015","Lei Federal","13.146/2015","Congresso Nacional","Estatuto da PCD","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm")'>Lei 13.146/2015 — Estatuto PCD</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_federal_9296_2018","Decreto Federal","9.296/2018","Presidência","Regulamenta Estatuto PCD","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/decreto/d9296.htm")'>Decreto 9.296/2018 — 10% UH acessíveis</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_11126_2005","Lei Federal","11.126/2005","Romeu Tuma","Cão-guia federal","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br")'>Lei 11.126/2005 — Cão-guia</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_10978_2025","Lei Estadual","10.978/2025","Dep. Julio Rocha","Símbolo Acessibilidade","Estadual","Ativo","Acessibilidade","https://www.alerj.rj.gov.br/Visualizar/Noticia/79597")'>Lei Estadual 10.978/2025 — Símbolo Acess.</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_9026_2025","Lei Municipal","9.026/2025","Ver. Luciana Novaes","Símbolo Acessibilidade","Municipal","Ativo","Acessibilidade","https://marcioribeiro.rio/lei-no-9-026-2025-2/")'>Lei Municipal 9.026/2025 — Símbolo Acess.</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_7329_2016","Lei Estadual","7.329/2016","Paulo Melo + Malafaia + Lins","Acessibilidade/Libras","Estadual","Vigente","Acessibilidade","http://alerjln1.alerj.rj.gov.br")'>Lei Estadual 7.329/2016 — Libras</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_9682_2022","Lei Estadual","9.682/2022","ALERJ","Vagas PCD/Idosos","Estadual","Vigente","Acessibilidade","https://www.alerj.rj.gov.br")'>Lei Estadual 9.682/2022 — Vagas PCD</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_5737_2014","Lei Municipal","5.737/2014","João Mendes de Jesus","Cão-guia exemplar","Municipal","Vigente","Acessibilidade","https://www.camara.rio")'>Lei Municipal 5.737/2014 — Cão-guia</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_2315_1995","Lei Municipal","2.315/1995","Rosa Fernandes","Cardápio Braille","Municipal","Vigente","Acessibilidade","https://www.camara.rio")'>Lei Municipal 2.315/1995 — Cardápio Braille</a></li>
+          <li><a class="doc-link" onclick='openDoc("nbr_9050_2020","Norma ABNT","NBR 9050:2020","ABNT","Acessibilidade edificações","Normativa","Vigente","Acessibilidade","https://www.abntcatalogo.com.br")'>NBR 9050:2020 — Acessibilidade</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6732_2025","PL Estadual","6.732/2025","Dep. Daniel Martins","Placas AVC","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.732/2025 — Placas AVC</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6556_2025","PL Estadual","6.556/2025","Dep. Douglas Gomes","Veda diferenciação UH adaptada","Estadual","Tramitando","Acessibilidade","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.556/2025 — Veda cobrança difer. PCD</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6001_2025","PL Estadual","6.001/2025","Dep. Sarah Poncio","Barras apoio banheiros","Estadual","Tramitando","Acessibilidade","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.001/2025 — Barras apoio banheiros</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_4178_2024","PL Estadual","4.178/2024","Dep. Carla Machado","Placas vagas preferenciais","Estadual","Tramitando","Acessibilidade","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 4.178/2024 — Vagas preferenciais</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_3960_2024","PL Estadual","3.960/2024","Dep. Carla Machado","Selo Amigo Inclusivo","Estadual","Tramitando","Acessibilidade","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 3.960/2024 — Selo Amigo Inclusivo</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_3362_2024","PL Estadual","3.362/2024","Deps. Fred Pacheco + Luiz Paulo","Lei Inclusão PCD Estadual","Estadual","Anexado","Acessibilidade","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 3.362/2024 — Lei Inclusão PCD</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_1798_2023","PL Estadual","1.798/2023","Relator Dep. Fred Pacheco","Desconto 50% diária PCD","Estadual","Tramitando","Acessibilidade","https://alerjln1.alerj.rj.gov.br/scpro1923.nsf")'>PL 1.798/2023 — Desconto 50% PCD</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_5655_2025","PL Estadual","5.655/2025","Dep. Rosenverg Reis","Reserva 2% mesas TEA","Estadual","Tramitando","Acess.-TEA","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 5.655/2025 — TEA 2% mesas</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_1426_2025","PL Municipal","1.426/2025","Ver. Dr. Gilberto","TEA alimentos próprios","Municipal","Anexado","Acess.-TEA","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL Municipal 1.426/2025 — TEA</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_694_2025","PL Municipal","694/2025","Ver. Joyce Trindade","TEA/celíacos/alergias","Municipal","Anexado","Acessibilidade","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL Municipal 694/2025 — TEA/celíacos</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_2113_2023","PL Municipal","2.113/2023","Ver. William Siri","TEA livre acesso","Municipal","Tramitando","Acess.-TEA","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL Municipal 2.113/2023 — TEA</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_12764_2012","Lei Federal","12.764/2012","Congresso Nacional","Política Nacional TEA","Federal","Vigente","Acess.-TEA","https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12764.htm")'>Lei 12.764/2012 — Lei Berenice Piana TEA</a></li>
+        </ul>
+      </div>
+
+      <!-- TURISMO E HOSPEDAGEM -->
+      <div class="theme-card">
+        <h4>🏖️ Turismo & Hospedagem <span class="count">16</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_11771_2008","Lei Federal","11.771/2008","Congresso Nacional","Lei Geral do Turismo","Federal","Ativo","Turismo","https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11771.htm")'>Lei 11.771/2008 — Lei Geral do Turismo</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_14829_2024","Lei Federal","14.829/2024","Congresso","Nova Lei Geral Turismo","Federal","Ativo","Turismo","https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/L14829.htm")'>Lei 14.829/2024 — Nova Lei Geral Turismo</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_federal_7381_2010","Decreto Federal","7.381/2010","Presidência","Regulamenta Lei 11.771","Federal","Vigente","Turismo","https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/decreto/d7381.htm")'>Decreto 7.381/2010 — Regulamenta Lei Turismo</a></li>
+          <li><a class="doc-link" onclick='openDoc("cadastur_federal","CADASTUR","CADASTUR","Min. Turismo","Cadastro obrigatório PSTs","Federal","Vigente","Hospedagem","https://cadastur.turismo.gov.br")'>CADASTUR — Cadastro Federal Obrigatório</a></li>
+          <li><a class="doc-link" onclick='openDoc("portaria_mtur_100_2011","Portaria MTUR","100/2011","MTUR","SBClass classificação","Federal","Vigente","Classificação","https://www.gov.br/turismo")'>Portaria MTUR 100/2011 — SBClass</a></li>
+          <li><a class="doc-link" onclick='openDoc("portaria_mtur_41_2025","Portaria MTUR","41/2025","Min. Turismo","FNRH Digital","Federal","Vigente","Hospedagem","https://www.in.gov.br")'>Portaria MTUR 41/2025 — FNRH-Digital</a></li>
+          <li><a class="doc-link" onclick='openDoc("portaria_mtur_28_2025","Portaria MTUR","28/2025","Min. Turismo","Check-in/out","Federal","Vigente","Hospedagem","https://www.gov.br/turismo")'>Portaria MTUR 28/2025 — Check-in/out</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_9811_2022","Lei Estadual","9.811/2022","ALERJ","Política Estadual Turismo","Estadual","Vigente","Turismo","https://www.legisweb.com.br/legislacao/?id=435690")'>Lei Estadual 9.811/2022 — Política Estadual</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_4621_2025","PL Estadual","4.621/2025","Dep. Rodrigo Amorim","Diária 21h","Estadual","Tramitando","Diárias","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 4.621/2025 — Diária 21h</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_2971_2024","PL Estadual","2.971/2024","Dep. Julio Rocha","Diária 24h","Estadual","Tramitando","Diárias","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 2.971/2024 — Diária 24h</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_2444_2017","PL Estadual","2.444/2017","Emendas Cláudio Caiado","Veda cobrança antecipada","Estadual","Tramitando","Consumidor","https://alerjln1.alerj.rj.gov.br/scpro1519.nsf")'>PL 2.444/2017 — Cobrança antecipada</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_1316_2019","PL Estadual","1.316/2019","Dep. Carlo Caiado","Cadastro turistas plataformas","Estadual","Tramitando","Digital","https://alerjln1.alerj.rj.gov.br/scpro1923.nsf")'>PL 1.316/2019 — Cadastro plataformas</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_372_2025","PL Municipal","372/2025","Ver. Salvino Oliveira","Curta temporada","Municipal","Tramitando","Curta Temporada","https://www.camara.rio/comunicacao/noticias/2828")'>PL Municipal 372/2025 — Curta temporada</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_1358_2025","PL Municipal","1.358/2025","Ver. Junior da Lucinha","Diárias plataformas","Municipal","Anexado","Diárias","https://www.camara.rio")'>PL Municipal 1.358/2025 — Diárias</a></li>
+          <li><a class="doc-link" onclick='openDoc("lc_estadual_41_1999","LC Estadual","41/1999","ALERJ","Hotel-Residência","Estadual","Vigente","Licenciamento","https://e.camara.rj.gov.br/Arquivo/Documents/legislacao/html/C411999.html")'>LC 41/1999 — Hotel-Residência</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_661_2005","PL Municipal","661/2005","Câmara Municipal RJ","Módulos de apoio hoteleiro nas praias do Rio","Municipal","Tramitando","Hospedagem","https://www.camara.rio")'>PL 661/2005 — Módulos hoteleiros na praia</a></li>
+        </ul>
+      </div>
+
+      <!-- SAÚDE E SEGURANÇA -->
+      <div class="theme-card">
+        <h4>🏥 Saúde e Segurança <span class="count">32</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_7259_2022","Lei Estadual","7.259/2022","ALERJ","Desfibrilador DEA","Estadual","Vigente","Saúde","https://aplicnt.camara.rj.gov.br/APL/Legislativos/contlei.nsf")'><b>Lei 7.259/2022 — Desfibrilador DEA</b></a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_3728_2001","Lei Estadual","3.728/2001","ALERJ","Guarda-vidas piscinas","Estadual","Vigente","Saúde","https://alerjln1.alerj.rj.gov.br")'><b>Lei 3.728/2001 — Guarda-vidas piscinas</b></a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_10817_2025","Lei Estadual","10.817/2025","Dep. Bruno Boaretto","Celíacos","Estadual","Ativo","Saúde","https://www.alerj.rj.gov.br/Visualizar/Noticia/77015")'>Lei 10.817/2025 — Celíacos</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_7300_2022","Lei Municipal","7.300/2022","Câmara RJ","Cartazes Heimlich","Municipal","Vigente","Saúde","https://www.camara.rio")'>Lei Municipal 7.300/2022 — Heimlich</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_7457_2022","Lei Municipal","7.457/2022","Câmara RJ","Água filtrada gratuita","Municipal","Vigente","Saúde","https://www.camara.rio")'>Lei Municipal 7.457/2022 — Água filtrada</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_6932_2021","Lei Municipal","6.932/2021","Câmara RJ","Proteção mulheres","Municipal","Vigente","Saúde","https://www.camara.rio")'>Lei Municipal 6.932/2021 — Proteção mulheres</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_5517_2009","Lei Estadual","5.517/2009","Poder Executivo","Proibição fumígenos","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>Lei Estadual 5.517/2009 — Fumígenos</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_6466_2013","Lei Estadual","6.466/2013","Dr José Luiz Nanci","Selo COSCIP","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>Lei Estadual 6.466/2013 — Selo COSCIP</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_5123_2007","Lei Estadual","5.123/2007","Pedro Fernandes","Hospedagem criança/adolesc.","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>Lei Estadual 5.123/2007 — Crianças</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_6961_2015","Lei Estadual","6.961/2015","Luiz Paulo","Disque Mulher","Estadual","Vigente","Saúde","https://www.alerj.rj.gov.br")'>Lei Estadual 6.961/2015 — Disque Mulher</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_7266_2022","Lei Municipal","7.266/2022","Câmara RJ","Disque 100/PM 190","Municipal","Vigente","Saúde","https://www.camara.rio")'>Lei 7.266/2022 — Disque 100/PM 190</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_7052_2021","Lei Municipal","7.052/2021","Câmara RJ","Disque 180","Municipal","Vigente","Saúde","https://www.camara.rio")'>Lei 7.052/2021 — Disque 180</a></li>
+          <li><a class="doc-link" onclick='openDoc("portaria_cbmerj_722_2013","Portaria CBMERJ","722/2013","Cel BM Simões","Segurança contra incêndio","Estadual","Vigente","Saúde","https://www.cbmerj.rj.gov.br")'>Portaria CBMERJ 722/2013</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_5838_2025","PL Estadual","5.838/2025","Dep. Rosenverg Reis","Violência mulheres/crianças","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 5.838/2025 — Violência mulheres/crianças</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6430_2025","PL Estadual","6.430/2025","Dep. Alexandre Knoploch","Protetor anti-adulteração","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.430/2025 — Tamper-evident</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6414_2025","PL Estadual","6.414/2025","Dep. Dionísio Lins","Vistorias PROCON bebidas","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.414/2025 — Vistorias PROCON</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6352_2025","PL Estadual","6.352/2025","Dep. Índia Armelau","Placas tráfico pessoas","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.352/2025 — Tráfico pessoas</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_5995_2025","PL Estadual","5.995/2025","Dep. Carlos Augusto","Lareiras e aquecedores","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 5.995/2025 — Lareiras</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_5645_2025","PL Estadual","5.645/2025","Dep. Giselle Monteiro","Pressão arterial","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 5.645/2025 — Pressão arterial</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_4939_2025","PL Estadual","4.939/2025","Dep. Renato Miranda","Água filtrada","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 4.939/2025 — Água filtrada</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_4857_2025","PL Estadual","4.857/2025","Dep. Prof. Josemar","Fogos ruidosos","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 4.857/2025 — Fogos ruidosos</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_3825_2024","PL Estadual","3.825/2024","Dep. India Armelau","Avisos álcool menores","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 3.825/2024 — Álcool menores</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_3099_2024","PL Estadual","3.099/2024","Dep. Rosenverg Reis","Manobra Heimlich","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 3.099/2024 — Heimlich</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_1327_2023","PL Estadual","1.327/2023","Dep. Rodrigo Amorim","Fogos estampido","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro1923.nsf")'>PL 1.327/2023 — Fogos estampido</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_1155_2023","PL Estadual","1.155/2023","Dep. Rodrigo Amorim","Álcool 70% academias","Estadual","Tramitando","Saúde","https://alerjln1.alerj.rj.gov.br/scpro1923.nsf")'>PL 1.155/2023 — Álcool 70% academias</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_7259_2022","Lei Municipal","7.259/2022","Câmara Municipal RJ","Desfibrilador obrigatório em hotéis","Municipal","Ativo","Saúde","https://www.camara.rio")'>Lei Mun. 7.259/2022 — Desfibrilador (Municipal)</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_rio_57501_2026","Decreto Municipal","57.501/2026","Prefeitura RJ","Licenciamento sanitário IVISA-RIO","Municipal","Ativo","Saúde","https://doweb.rio.rj.gov.br")'>Decreto 57.501/2026 — IVISA-RIO</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_15377_2026","Lei Federal","15.377/2026","Congresso","Informação vacinação/exames trabalhadores","Federal","Ativo","Saúde","https://www.planalto.gov.br")'>Lei 15.377/2026 — Vacinação trabalhadores</a></li>
+          <li><a class="doc-link" onclick='openDoc("nr_15_16_atualizacao_2026","Portaria/NR","NR-15 + NR-16 / 2025","MTE","Insalubridade e periculosidade camareiras","Federal","Ativo","Saúde","https://www.gov.br/trabalho-e-emprego")'>NR-15 + NR-16 / 2025 — Insalubridade hoteleira</a></li>
+          <li><a class="doc-link" onclick='openDoc("nr_01_atualizada_2024","Norma Regulamentadora","NR-01 / 2024","MTE","Gerenciamento de Riscos Ocupacionais — GRO (2024)","Federal","Ativo","Saúde","https://www.gov.br/trabalho-e-emprego")'>NR-01 / 2024 — Gerenciamento de Riscos (GRO)</a></li>
+          <li><a class="doc-link" onclick='openDoc("nr_01_atualizada_2025","Norma Regulamentadora","NR-01 / 2025","MTE","Gerenciamento de Riscos Ocupacionais — GRO (2025)","Federal","Ativo","Saúde","https://www.gov.br/trabalho-e-emprego")'>NR-01 / 2025 — Gerenciamento de Riscos (GRO)</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_15211_2025","Lei Federal","15.211/2025","Congresso","ECA Digital — proteção crianças/adolescentes no ambiente digital","Federal","Ativo","Saúde","https://www.planalto.gov.br")'>Lei 15.211/2025 — ECA Digital</a></li>
+        </ul>
+      </div>
+
+      <!-- ANIMAIS -->
+      <div class="theme-card">
+        <h4>🐾 Animais e Apoio Emocional <span class="count">5</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_11126_2005","Lei Federal","11.126/2005","Romeu Tuma","Cão-guia federal","Federal","Vigente","Acessibilidade","https://www.planalto.gov.br")'>Lei Federal 11.126/2005 — Cão-guia</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_7876_2023","Lei Municipal","7.876/2023","Câmara RJ","Câmeras hotéis pet","Municipal","Vigente","Animais","https://leismunicipais.com.br/a/rj/r/rio-de-janeiro/lei-ordinaria/2023/788/7876")'>Lei Municipal 7.876/2023 — Câmeras pet</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_5637_2025","PL Estadual","5.637/2025","Dep. Lilian Behring","Cães terapia","Estadual","Tramitando","Animais","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 5.637/2025 — Cães terapia</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_722_2025","PL Municipal","722/2025","Ver. Salvino Oliveira","Animais serviço/apoio","Municipal","Tramitando","Animais","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL Municipal 722/2025 — Animais serviço</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_132_2025","PL Municipal","132/2025","Ver. Luiz Ramos Filho","Selo Pet Friendly","Municipal","Tramitando","Animais","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL Municipal 132/2025 — Selo Pet Friendly</a></li>
+        </ul>
+      </div>
+
+      <!-- TRIBUTAÇÃO -->
+      <div class="theme-card">
+        <h4>💰 Tributação e Incentivos <span class="count">12</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("lc_complementar_116_2003","LC Federal","116/2003","Congresso","ISS item 9.01","Federal","Vigente","Tributação","https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp116.htm")'>LC 116/2003 — ISS Hospedagem</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_691_1984","Lei Municipal","691/1984","Câmara RJ","Código Tributário","Municipal","Vigente","Tributação","https://leismunicipais.com.br/codigo-tributario-rio-de-janeiro-rj")'>Lei Municipal 691/1984 — Código Tributário ISS 5%</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_10954_2025","Lei Estadual","10.954/2025","Dep. Dr. Deodalto","Parcerias hotelaria","Estadual","Ativo","Tributação","https://www.legisweb.com.br/legislacao/?id=483696")'>Lei Estadual 10.954/2025 — Parcerias hotelaria</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_1314_2025","PL Municipal","1.314/2025","Ver. Flávio Valle","Redução 40% IPTU hotelaria","Municipal","Tramitando","Tributação","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL 1.314/2025 — IPTU -40% hotelaria</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_3466a_2024","PL Municipal","3.466-A/2024","Vers. Rafael Aloisio + Pedro Duarte + Rogério Amorim","Não incidência TCL","Municipal","Tramitando","Tributação","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL 3.466-A/2024 — Não incidência TCL</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_134_2025","PL Municipal","134/2025","Ver. Fernando Armelau","Turismo Transparente ISSQN","Municipal","Tramitando","Tributação","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL 134/2025 — Turismo Transparente</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_1711_2025","PL Municipal","1711/2025","Ver. Tributação","Taxa Turismo","Municipal","Tramitando","Tributação","https://www.camara.rio")'>PL 1711/2025 — Taxa Turismo</a></li>
+          <li><a class="doc-link" onclick='openDoc("pec_34_2026","PEC","34/2026","ALERJ","Veda taxa de turismo nos municípios RJ","Estadual","Tramitando","Tributário","https://www.alerj.rj.gov.br")'>PEC 34/2026 — Veda taxa de turismo</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_rio_58108_2026","Decreto Municipal","58.108/2026","Prefeitura RJ","Parcelamento ISS não inscrito em dívida ativa","Municipal","Ativo","Tributário","https://doweb.rio.rj.gov.br")'>Decreto Rio 58.108/2026 — ISS Parcelamento</a></li>
+          <li><a class="doc-link" onclick='openDoc("resolucao_smf_3419_2026","Resolução SMF","3.419/2026","SMF RJ","NFS-e padrão nacional jan/2026","Municipal","Ativo","Tributário","https://www.fazenda.rio.rj.gov.br")'>Resolução SMF 3.419/2026 — NFS-e</a></li>
+          <li><a class="doc-link" onclick='openDoc("portaria_frec_rio_cis_323_2026","Portaria Municipal","F/REC-RIO/CIS 323/2026","SMF RJ","Obrigações acessórias NFS-e","Municipal","Ativo","Tributário","https://www.fazenda.rio.rj.gov.br")'>Portaria 323/2026 — NFS-e obrigações</a></li>
+          <li><a class="doc-link" onclick='openDoc("portaria_frec_rio_cis_324_2026","Portaria Municipal","F/REC-RIO/CIS 324/2026","SMF RJ","Contingência sistemas NFS-e","Municipal","Ativo","Tributário","https://www.fazenda.rio.rj.gov.br")'>Portaria 324/2026 — NFS-e contingência</a></li>
+        </ul>
+      </div>
+
+      <!-- SUSTENTABILIDADE -->
+      <div class="theme-card">
+        <h4>🌱 Sustentabilidade <span class="count">5</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("nbr_15401_2006","NBR ABNT","NBR 15401:2006","ABNT","Sustentabilidade hospedagem","Normativa","Vigente","Sustentabilidade","https://www.abntcatalogo.com.br")'>NBR 15401:2006 — Sust. hospedagem</a></li>
+          <li><a class="doc-link" onclick='openDoc("nbr_iso_21401_2018","NBR ISO","NBR ISO 21401:2018","ABNT/ISO","Sust. ISO","Normativa","Vigente","Sustentabilidade","https://www.abntcatalogo.com.br")'>NBR ISO 21401:2018 — Sust. Internacional</a></li>
+          <li><a class="doc-link" onclick='openDoc("nbr_16534_2018","NBR ABNT","NBR 16534:2018","ABNT","Indicadores sust.","Normativa","Vigente","Sustentabilidade","https://www.abntcatalogo.com.br")'>NBR 16534:2018 — Indicadores sust.</a></li>
+          <li><a class="doc-link" onclick='openDoc("plc_municipal_159_2024","PLC Municipal","159/2024","Poder Executivo","Código Sustentabilidade Edif.","Municipal","Tramitando","Sustentabilidade","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PLC 159/2024 — Código Sustentabilidade</a></li>
+          <li><a class="doc-link" onclick='openDoc("nbr_9050_2020","NBR ABNT","NBR 9050:2020","ABNT","Acessibilidade","Normativa","Vigente","Acessibilidade","https://www.abntcatalogo.com.br")'>NBR 9050:2020 — Acessibilidade</a></li>
+        </ul>
+      </div>
+
+      <!-- FERIADOS / CALENDÁRIO -->
+      <div class="theme-card">
+        <h4>📅 Feriados e Calendário <span class="count">4</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("lei_estadual_11002_2025","Lei Estadual","11.002/2025","Deps. Gualberto + Pacheco","Corpus Christi feriado","Estadual","Ativo","Calendário","https://www.legisweb.com.br/legislacao/?id=485344")'>Lei 11.002/2025 — Corpus Christi feriado</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_rio_57505_2026","Decreto Municipal","57.505/2026","Prefeito Eduardo Paes","Carnaval 2026","Municipal","Vigente","Calendário","https://doweb.rio.rj.gov.br/")'>Decreto Rio 57.505/2026 — Carnaval 2026</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_rio_57802_2026","Decreto Municipal","57.802/2026","Prefeitura RJ","Ponto facultativo municipal quinta-feira santa 2026","Municipal","Ativo","Calendário","https://doweb.rio.rj.gov.br")'>Decreto Rio 57.802/2026 — Ponto fac. Mun.</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_estadual_50249_2026","Decreto Estadual","50.249/2026","Gov. Estado RJ","Ponto facultativo estadual quinta-feira santa 2026","Estadual","Ativo","Calendário","https://www.alerj.rj.gov.br")'>Decreto Est. 50.249/2026 — Ponto fac. Est.</a></li>
+        </ul>
+      </div>
+
+      <!-- TRANSPARÊNCIA E DIGITAL -->
+      <div class="theme-card">
+        <h4>🔍 Transparência e Digital <span class="count">6</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("portaria_mtur_41_2025","Portaria MTUR","41/2025","Min. Turismo","FNRH-Digital","Federal","Vigente","Digital","https://www.in.gov.br")'>Portaria MTUR 41/2025 — FNRH-Digital</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_3510_2024","PL Estadual","3.510/2024","ANEXADO","CNPJ em sites","Estadual","Anexado","Digital","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 3.510/2024 — CNPJ em sites</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_3650_2024","PL Estadual","3.650/2024","Dep. Alan Lopes","CNPJ em sites","Estadual","Tramitando","Digital","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 3.650/2024 — CNPJ sites compl.</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_3850_2024","PL Estadual","3.850/2024","Dep. Rosenverg Reis","QR Code denúncias","Estadual","Tramitando","Digital","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 3.850/2024 — QR Code denúncias</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_2160_2023","PL Estadual","2.160/2023","ALERJ","Câmeras dados cartão","Estadual","Tramitando","Digital","https://alerjln1.alerj.rj.gov.br/scpro1923.nsf")'>PL 2.160/2023 — Câmeras cartão</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_pl_94c_2025","PLC Municipal","94/2025","Ver. Alana Passos","Vídeo monitoramento","Municipal","Anexado","Digital","https://www.camara.rio")'>PLC 94/2025 — Vídeo monitoramento</a></li>
+        </ul>
+      </div>
+
+      <!-- ORDENAMENTO URBANO -->
+      <div class="theme-card">
+        <h4>🏛️ Ordenamento Urbano <span class="count">5</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("decreto_municipal_29881_2008","Decreto Municipal","29.881/2008","Prefeito César Maia","Posturas + praia hotéis","Municipal","Vigente","Ordenamento","https://leismunicipais.com.br/a/rj/r/rio-de-janeiro/decreto/2008/2989/29881")'>Decreto 29.881/2008 — Praia/Posturas</a></li>
+          <li><a class="doc-link" onclick='openDoc("lc_municipal_226_2020","LC Municipal","226/2020","Ver. Rafael Aloisio Freitas + SindRio","Mesas e cadeiras","Municipal","Vigente","Ordenamento","https://e.camara.rj.gov.br/Arquivo/Documents/legislacao/html/C2262020.html")'>LC 226/2020 — Mesas/cadeiras (ex-PLC 153/2019)</a></li>
+          <li><a class="doc-link" onclick='openDoc("decreto_municipal_48980_2021","Decreto Municipal","48.980/2021","Prefeitura RJ","Regulamenta LC 226","Municipal","Vigente","Ordenamento","https://www.legisweb.com.br/legislacao/?id=415695")'>Decreto 48.980/2021 — Regulamenta LC 226</a></li>
+          <li><a class="doc-link" onclick='openDoc("lc_municipal_111_2011","LC Municipal","111/2011","Câmara RJ","LUOS","Municipal","Vigente","Ordenamento","https://www.legisweb.com.br")'>LC 111/2011 — LUOS</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_488_2025","PL Municipal","488/2025","Ver. Flávio Valle","Estatuto Orla RJ","Municipal","Anexado","Ordenamento","https://www.camara.rio/atividade-parlamentar/processo-legislativo/pl")'>PL 488/2025 — Estatuto da Orla</a></li>
+        </ul>
+      </div>
+
+      <!-- PROTEÇÃO AO TURISTA -->
+      <div class="theme-card">
+        <h4>⚠️ Proteção ao Turista <span class="count">3</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6354_2025","PL Estadual","6.354/2025","Dep. Bruno Boaretto","Boa Noite Cinderela","Estadual","Anexado","Proteção","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.354/2025 — Boa Noite Cinderela</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_6149_2025","PL Estadual","6.149/2025","Dep. Valdecy da Saúde","Prevenção golpes","Estadual","Tramitando","Proteção","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 6.149/2025 — Prevenção golpes</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_5838_2025","PL Estadual","5.838/2025","Dep. Rosenverg Reis","Violência mulheres/crianças","Estadual","Tramitando","Proteção","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 5.838/2025 — Violência mulheres</a></li>
+        </ul>
+      </div>
+
+      <!-- CONSUMIDOR / TRABALHO -->
+      <div class="theme-card">
+        <h4>👥 Consumidor & Trabalho <span class="count">9</span></h4>
+        <ul>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_8078_1990","Lei Federal","8.078/1990","Congresso","CDC","Federal","Vigente","Consumidor","https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm")'>Lei 8.078/1990 — CDC</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_13419_2017","Lei Federal","13.419/2017","Congresso","Gorjetas","Federal","Vigente","Trabalho","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13419.htm")'>Lei 13.419/2017 — Gorjetas</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_10741_2003","Lei Federal","10.741/2003","Congresso","Estatuto do Idoso","Federal","Vigente","Inclusão","https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm")'>Lei 10.741/2003 — Estatuto Idoso</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_1356_2025","PL Municipal","1.356/2025","Ver. Junior da Lucinha","Selo Idoso","Municipal","Tramitando","Inclusão","https://www.camara.rio")'>PL 1.356/2025 — Selo Idoso</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_municipal_8162_2018","Lei Municipal","8.162/2018","Câmara RJ","Taxa gorjeta facultativa","Municipal","Vigente","Trabalho","https://www.camara.rio")'>Lei 8.162/2018 — Gorjeta facultativa</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_municipal_1866_2026","PL Municipal","1.866/2026","Ver. Marcio Ribeiro","Apresentação gorjeta","Municipal","Tramitando","Trabalho","https://www.camara.rio")'>PL 1.866/2026 — Gorjeta e música ao vivo</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_15371_2026","Lei Federal","15.371/2026","Congresso","Licença-paternidade 20 dias + salário-paternidade","Federal","Ativo","Trabalho","https://www.planalto.gov.br")'>Lei 15.371/2026 — Licença-paternidade</a></li>
+          <li><a class="doc-link" onclick='openDoc("lei_federal_13419_2017_b","Lei Federal","13.419/2017","Congresso","Gorjetas — texto íntegro DOU","Federal","Ativo","Trabalho","https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13419.htm")'>Lei 13.419/2017 (DOU) — Gorjetas íntegro</a></li>
+          <li><a class="doc-link" onclick='openDoc("pl_estadual_7012_2026","PL Estadual","7.012/2026","ALERJ","Proíbe repasse ao garçom de prejuízo por cliente evasor","Estadual","Tramitando","Trabalho","https://alerjln1.alerj.rj.gov.br/scpro2327.nsf")'>PL 7.012/2026 — Proteção garçom</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABA PLANO DE IMPLEMENTAÇÃO - REMOVIDA -->
+<div id="tab-fases" class="tab-content" style="display:none !important;">
+  <div class="section">
+    <h2>🚀 Implementação</h2>
+    <p style="margin-bottom:15px; font-size:1em; color:#444;">Execução acelerada — <strong style="color:#7CB342;">todas as 3 fases foram concluídas hoje, 14/05/2026.</strong> Sistema pronto para produção.</p>
+
+    <div class="phase-grid">
+      <div class="phase-card phase-1">
+        <span class="status-tag">✅ CONCLUÍDA</span>
+        <h4>🟢 FASE 1 - CRÍTICA</h4>
+        <div class="deadline">⏰ 14/05/2026 - manhã</div>
+        <div class="count-big">15 docs</div>
+        <p style="margin-top:7px; font-size:.88em;">5 Leis Estaduais 2025 + Lei Municipal 9.026 + Lei 7.259 DEA + Lei 3.728 Guarda-vidas + Portaria MTUR 41 FNRH + PLs prioritários (372, 1.358, 4.621, 2.971, 6.354, 6.149, 1.316, 2.444, 3.362, 5.838, 1.314)</p>
+      </div>
+
+      <div class="phase-card phase-2">
+        <span class="status-tag">✅ CONCLUÍDA</span>
+        <h4>🟢 FASE 2 - ALTA</h4>
+        <div class="deadline">⏰ 14/05/2026 - tarde</div>
+        <div class="count-big">68 docs</div>
+        <p style="margin-top:7px; font-size:.88em;">Lei 13.146 PCD + Dec. 9.296 + Lei 10.741 Idoso + Lei 12.764 TEA + LC 116 ISS + CDC + Lei 14.829 + Decreto 7.381 + Portarias MTUR 28/100/130/110 + 28 PLs ALERJ + 17 PLs Câmara + Lei 691/1984 ISS + LC 111 LUOS + LC 270 Plano Diretor + Decreto 29.881 + LC 226 mesas</p>
+      </div>
+
+      <div class="phase-card phase-3">
+        <span class="status-tag">✅ CONCLUÍDA</span>
+        <h4>🟢 FASE 3 - MÉDIA</h4>
+        <div class="deadline">⏰ 14/05/2026 - final tarde</div>
+        <div class="count-big">56 docs</div>
+        <p style="margin-top:7px; font-size:.88em;">41 Placas Obrigatórias com PDF + NBR 9050 Acessibilidade + NBR 15401/16534/ISO 21401 Sustentabilidade + Lei 13.419 Gorjetas + Decretos calendário</p>
+      </div>
+    </div>
+
+    <h3>📅 Cronograma Executado</h3>
+    <table>
+      <thead><tr><th>Horário</th><th>Etapa</th><th>Responsável</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><b>14/05 - manhã</b></td><td>Cruzamento com planilha jurídica HotéisRIO (19/03/2026)</td><td>Tech/Pesquisa</td><td><span class="badge b-ativo">✅ Concluído</span></td></tr>
+        <tr><td><b>14/05 - manhã</b></td><td>Pesquisa autores reais + URLs específicas (Julio Rocha, Bruno Boaretto, etc)</td><td>Tech/Pesquisa</td><td><span class="badge b-ativo">✅ Concluído</span></td></tr>
+        <tr><td><b>14/05 - tarde</b></td><td>Geração de 237 PDFs com texto íntegro + integração viewer no template</td><td>Equipe Dev</td><td><span class="badge b-ativo">✅ Concluído</span></td></tr>
+        <tr><td><b>14/05 - tarde</b></td><td>Fase 2: 68 PDFs adicionais (Leis Fed + PLs + decretos)</td><td>Equipe Dev</td><td><span class="badge b-ativo">✅ Concluído</span></td></tr>
+        <tr><td><b>14/05 - final tarde</b></td><td>Fase 3: Normas ABNT + 41 Placas com link PDF</td><td>Equipe Dev + RH</td><td><span class="badge b-ativo">✅ Concluído</span></td></tr>
+        <tr><td><b>14/05 - 18h</b></td><td>🎉 SISTEMA EM PRODUÇÃO - 237 docs + Placas</td><td>Todos</td><td><span class="badge b-ativo">✅ Live</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="conclusao">
+      <h3>✅ Sistema Finalizado</h3>
+      <p>Iniciamos com apenas <strong>5 documentos</strong> cadastrados (cobertura de 8.2%). Com a execução completa das 3 fases hoje, a plataforma agora contém <strong>240 documentos com PDF íntegro</strong>, tornando-se <strong>47.8x mais completa</strong>.</p>
+      <ul>
+        <li>✓ <b>Legislação:</b> Federal (34) + Estadual (101) + Municipal (104)</li>
+        <li>✓ <b>14 temas:</b> Acessibilidade, Turismo, Saúde/Segurança, Tributação, Trabalho, Acessibilidade-TEA, Animais, Sustentabilidade, Calendário, Consumidor, Hospedagem Digital, Curta Temporada, Proteção Turista, Ordenamento Urbano</li>
+        <li>✓ <b>Status diversos:</b> Vigente + Tramitando + Anexado — total 239 documentos com PDF</li>
+        <li>✓ <b>41 Placas Obrigatórias</b> com PDF individual e link direto</li>
+        <li>✓ <b>Viewer integrado</b> - leitura completa de cada lei sem sair da plataforma</li>
+        <li>✓ <b>Menu de busca completo:</b> Tipo, Nível, Status + busca livre</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>📅 SISTEMA EM PRODUÇÃO HOJE - 14/05/2026 ✅</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE DOCUMENTO COM VIEWER INTEGRADO -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Detalhes do Documento</h3>
+      <button class="modal-close" onclick="closeDoc()">Fechar ✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-info">
+        <div class="row"><strong>Tipo</strong><span id="mTipo">—</span></div>
+        <div class="row"><strong>Número</strong><span id="mNum">—</span></div>
+        <div class="row"><strong>Autor</strong><span id="mAutor">—</span></div>
+        <div class="row"><strong>Assunto</strong><span id="mAssunto">—</span></div>
+        <div class="row"><strong>Nível</strong><span id="mNivel">—</span></div>
+        <div class="row"><strong>Status</strong><span id="mStatus">—</span></div>
+        <div class="row"><strong>Tema</strong><span id="mTema">—</span></div>
+        <p style="margin-top:14px; font-size:.78em; color:#777;">👁 Resumo rápido. Clique em <strong>Página Completa</strong> para ver todas as informações.</p>
+      </div>
+      <div class="modal-viewer">
+        <iframe id="mPdf" src=""></iframe>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <span style="font-size:.85em; color:#666;">📂 Pasta local: <code>https://leisedecretos.sindhoteisrj.com.br/docs_leis/</code></span>
+      <div style="display:flex; gap:8px;">
+        <a class="btn-download" id="mDownload" href="" download>⬇ Baixar PDF</a>
+        <a class="btn-fonte" id="mFonte" href="" target="_blank">🌐 Fonte oficial</a>
+        <button class="btn-fonte" style="background:#7030A0;" onclick="openLexPageFromModal()">📋 Página completa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lex-page" id="lexPage">
+  <div class="lex-inner">
+    <div class="lex-hdr">
+      <button class="lex-back-btn" onclick="closeLexPage()">← Voltar à lista</button>
+      <h2 id="lpTitle">—</h2>
+    </div>
+    <div class="lex-body">
+      <div class="lex-meta">
+        <div class="mr"><div class="ml">Tipo</div><div class="mv" id="lpTipo">—</div></div>
+        <div class="mr"><div class="ml">Número</div><div class="mv" id="lpNum">—</div></div>
+        <div class="mr"><div class="ml">Autor</div><div class="mv" id="lpAutor">—</div></div>
+        <div class="mr"><div class="ml">Assunto / Ementa</div><div class="mv" id="lpAssunto">—</div></div>
+        <div class="mr"><div class="ml">Nível</div><div class="mv" id="lpNivel">—</div></div>
+        <div class="mr"><div class="ml">Status</div><div class="mv" id="lpStatus">—</div></div>
+        <div class="mr"><div class="ml">Tema</div><div class="mv" id="lpTema">—</div></div>
+      </div>
+      <div class="lex-pdf-wrap">
+        <iframe id="lpPdf" src=""></iframe>
+        <div class="lex-footer">
+          <a class="btn-download" id="lpDownload" href="" download>⬇ Baixar PDF</a>
+          <a class="btn-fonte" id="lpFonte" href="" target="_blank">🌐 Fonte Oficial</a>
+          <button class="btn-lex-back" onclick="closeLexPage()">← Voltar à lista</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// TABS
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Todos os documentos agora possuem PDF disponível
+const PLACEHOLDER_SLUGS = new Set([]);
+
+// MODAL com PDF viewer
+function openDoc(slug, tipo, num, autor, assunto, nivel, status, tema, url) {
+  // Se for placeholder, abrir fonte oficial diretamente
+  if (PLACEHOLDER_SLUGS.has(slug)) {
+    window.open(url, '_blank');
+    return;
+  }
+  document.getElementById('modalTitle').textContent = tipo + ' nº ' + num;
+  document.getElementById('mTipo').textContent = tipo;
+  document.getElementById('mNum').textContent = num;
+  document.getElementById('mAutor').textContent = autor;
+  document.getElementById('mAssunto').textContent = assunto;
+  document.getElementById('mNivel').textContent = nivel;
+  document.getElementById('mStatus').textContent = status;
+  document.getElementById('mTema').textContent = tema;
+  document.getElementById('mFonte').href = url;
+  const pdfPath = 'https://leisedecretos.sindhoteisrj.com.br/docs_leis/' + slug + '.pdf';
+  document.getElementById('mPdf').src = pdfPath;
+  document.getElementById('mDownload').href = pdfPath;
+  document.getElementById('modal').classList.add('show');
+}
+// PARECERES — converter caminho Windows para file:// URL
+function toFileUrl(winPath) {
+  return 'file:///' + winPath.split('\\').map(s => encodeURIComponent(s)).join('/');
+}
+
+function openParecer(titulo, tipo, assunto, tema, ano, autor, winPath) {
+  const url = toFileUrl(winPath);
+  document.getElementById('modalTitle').textContent = titulo;
+  document.getElementById('mTipo').textContent = tipo;
+  document.getElementById('mNum').textContent = ano;
+  document.getElementById('mAutor').textContent = autor;
+  document.getElementById('mAssunto').textContent = assunto;
+  document.getElementById('mNivel').textContent = tema;
+  document.getElementById('mStatus').textContent = 'Arquivo local';
+  document.getElementById('mTema').textContent = tema;
+  document.getElementById('mFonte').href = url;
+  document.getElementById('mDownload').href = url;
+  const isPdf = winPath.toLowerCase().endsWith('.pdf');
+  document.getElementById('mPdf').src = isPdf ? url : '';
+  if (!isPdf) window.open(url, '_blank');
+  document.getElementById('modal').classList.add('show');
+}
+
+
+function toggleAbih() {
+  const el = document.getElementById('abihSerie');
+  const icon = document.getElementById('abihToggleIcon');
+  if (el.style.display === 'none') { el.style.display = 'block'; icon.textContent = '▲'; }
+  else { el.style.display = 'none'; icon.textContent = '▼'; }
+}
+
+
+// Estado da página completa
+let _lexState = null;
+
+function openLexPage(slug, tipo, num, autor, assunto, nivel, status, tema, url) {
+  _lexState = {slug, tipo, num, autor, assunto, nivel, status, tema, url};
+  document.getElementById('lpTitle').textContent = tipo + ' nº ' + num;
+  document.getElementById('lpTipo').textContent = tipo;
+  document.getElementById('lpNum').textContent = num;
+  document.getElementById('lpAutor').textContent = autor;
+  document.getElementById('lpAssunto').textContent = assunto;
+  document.getElementById('lpNivel').textContent = nivel;
+  document.getElementById('lpStatus').textContent = status;
+  document.getElementById('lpTema').textContent = tema;
+  document.getElementById('lpFonte').href = url || '#';
+  const p = 'https://leisedecretos.sindhoteisrj.com.br/docs_leis/' + slug + '.pdf';
+  document.getElementById('lpPdf').src = p;
+  document.getElementById('lpDownload').href = p;
+  document.getElementById('lexPage').classList.add('show');
+  document.getElementById('lexPage').scrollTo(0, 0);
+}
+
+function closeLexPage() {
+  document.getElementById('lexPage').classList.remove('show');
+  document.getElementById('lpPdf').src = '';
+  _lexState = null;
+}
+
+function openLexPageFromModal() {
+  if (!_lexState) return;
+  closeDoc();
+  openLexPage(_lexState.slug, _lexState.tipo, _lexState.num, _lexState.autor,
+              _lexState.assunto, _lexState.nivel, _lexState.status, _lexState.tema, _lexState.url);
+}
+
+// Adiciona botões de download/fonte e células clicáveis em todas as linhas
+(function initAcoes() {
+  document.querySelectorAll('#legisBody tr').forEach(tr => {
+    const tds = tr.querySelectorAll('td');
+    if (tds.length < 8) return;
+    const actionsTd = tds[tds.length - 1];
+    const verLink = actionsTd.querySelector('.doc-link');
+    if (!verLink) return;
+    const oc = verLink.getAttribute('onclick') || '';
+    // Extrair todos os 9 argumentos do openDoc
+    const m = oc.match(/openDoc\("([^"]+)","([^"]+)","([^"]+)","([^"]+)","([^"]+)","([^"]+)","([^"]+)","([^"]*)","([^"]*)"\)/);
+    if (!m) return;
+    const [,slug,tipo,num,autor,assunto,nivel,status,tema,url] = m;
+
+    // Atualizar onclick do "📄 Ver" para também salvar estado (necessário para "Página completa" no modal)
+    verLink.setAttribute('onclick', `_saveModalState("${slug}","${tipo}","${num}","${autor}","${assunto}","${nivel}","${status}","${tema}","${url}"); openDoc("${slug}","${tipo}","${num}","${autor}","${assunto}","${nivel}","${status}","${tema}","${url}")`);
+
+    // Botão download
+    const dl = document.createElement('a');
+    dl.className = 'doc-link doc-dl';
+    dl.href = 'https://leisedecretos.sindhoteisrj.com.br/docs_leis/' + slug + '.pdf';
+    dl.setAttribute('download', '');
+    dl.title = 'Baixar PDF'; dl.textContent = '⬇️ Baixar';
+    actionsTd.appendChild(dl);
+
+    // Botão fonte
+    if (url) {
+      const src = document.createElement('a');
+      src.className = 'doc-link doc-src';
+      src.href = url; src.target = '_blank'; src.rel = 'noopener';
+      src.title = 'Ver fonte oficial'; src.textContent = '🔗 Fonte';
+      actionsTd.appendChild(src);
+    }
+
+    // Número clicável (col 2) → abre PÁGINA COMPLETA
+    const numTd = tds[1];
+    if (numTd) {
+      numTd.classList.add('cell-num');
+      numTd.addEventListener('click', () => openLexPage(slug,tipo,num,autor,assunto,nivel,status,tema,url));
+    }
+
+    // Descrição clicável (col 4) → abre PÁGINA COMPLETA
+    const descTd = tds[3];
+    if (descTd) {
+      descTd.classList.add('cell-desc');
+      descTd.addEventListener('click', () => openLexPage(slug,tipo,num,autor,assunto,nivel,status,tema,url));
+    }
+  });
+})();
+
+function _saveModalState(slug, tipo, num, autor, assunto, nivel, status, tema, url) {
+  _lexState = {slug, tipo, num, autor, assunto, nivel, status, tema, url};
+}
+
+function closeDoc(){
+  document.getElementById('modal').classList.remove('show');
+  document.getElementById('mPdf').src = '';
+}
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeDoc(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDoc(); closeLexPage(); } });
+
+// FILTROS MULTI-SELEÇÃO
+const filters = { tipo:[], nivel:[], status:[], text:'' };
+
+document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const f = btn.dataset.filter, v = btn.dataset.value;
+    if (!f) return;
+    const arr = filters[f];
+    const idx = arr.indexOf(v);
+    if (idx >= 0) {
+      arr.splice(idx, 1);
+      btn.classList.remove('active');
+    } else {
+      arr.push(v);
+      btn.classList.add('active');
+    }
+    applyFilters();
+  });
+});
+
+document.getElementById('searchBox').addEventListener('input', e => {
+  filters.text = e.target.value.toLowerCase();
+  applyFilters();
+});
+
+function clearAllFilters() {
+  filters.tipo = []; filters.nivel = []; filters.status = []; filters.text = '';
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+  document.getElementById('searchBox').value = '';
+  applyFilters();
+}
+
+function applyFilters() {
+  let count = 0;
+  document.querySelectorAll('#legisBody tr').forEach(tr => {
+    const t = tr.dataset.tipo, n = tr.dataset.nivel, s = tr.dataset.status;
+    const text = tr.textContent.toLowerCase();
+    const okTipo = filters.tipo.length === 0 || filters.tipo.includes(t);
+    const okNivel = filters.nivel.length === 0 || filters.nivel.includes(n);
+    const okStatus = filters.status.length === 0 || filters.status.includes(s);
+    const okText = !filters.text || text.includes(filters.text);
+    if (okTipo && okNivel && okStatus && okText) { tr.classList.remove('hidden'); count++; }
+    else { tr.classList.add('hidden'); }
+  });
+  document.getElementById('resultCount').textContent = count + ' documento' + (count !== 1 ? 's' : '');
+}
+
+// FILTROS PLACAS OBRIGATÓRIAS
+const placasFilters = { tipo:'all', esfera:'all', text:'' };
+
+// Inicializar atributos das linhas das placas com base no conteúdo (Tipo + Autor)
+function detectPlacaEsfera(tipoTxt, autorTxt) {
+  const c = (tipoTxt + ' ' + autorTxt).toLowerCase();
+  // CBMERJ é Estadual (vem antes da regra Federal por causa de "Portaria")
+  if (c.includes('cbmerj')) return 'Estadual';
+  // Tipo coluna - palavras-chave explícitas
+  if (c.includes('lei estadual') || c.includes('decreto estadual') || c.includes('alerj')) return 'Estadual';
+  if (c.includes('lei municipal') || c.includes('decreto municipal') || c.includes('decreto rio') || c.includes('lei complementar municipal') || c.includes('(mun)')) return 'Municipal';
+  if (c.includes('lei federal') || c.includes('decreto federal') || c.includes('portaria mtur') || c.includes('portaria mtur') || c.includes('(fed)') || c.includes('lei complementar federal') || c.includes('lc federal')) return 'Federal';
+  // Pelo autor
+  if (c.includes('câmara municipal') || c.includes('camara municipal') || c.includes('prefeitura') || c.includes('prefeito') || c.includes('vereador') || c.includes('ver.')) return 'Municipal';
+  if (c.includes('mtur') || c.includes('ministério do turismo') || c.includes('ministerio do turismo') || c.includes('congresso nacional') || c.includes('presidência')) return 'Federal';
+  if (c.includes('alerj') || c.includes('deputado') || c.includes('dep.')) return 'Estadual';
+  // Default: a maioria dos casos sem indicação clara nesta tabela é Municipal
+  return 'Municipal';
+}
+
+(function initPlacasRows(){
+  const rows = document.querySelectorAll('.placas-table tbody tr');
+  rows.forEach(tr => {
+    const placaCell = tr.querySelector('td:nth-child(4)');
+    const tipoCell = tr.querySelector('td:nth-child(2)');
+    const autorCell = tr.querySelector('td:nth-child(3)');
+    if (placaCell) {
+      const v = (placaCell.textContent || '').trim();
+      tr.dataset.placaTipo = v === '✓' ? 'placa-fisica' : 'obrigacao';
+    }
+    const tipoTxt = tipoCell ? (tipoCell.textContent || '') : '';
+    const autorTxt = autorCell ? (autorCell.textContent || '') : '';
+    tr.dataset.placaEsfera = detectPlacaEsfera(tipoTxt, autorTxt);
+  });
+})();
+
+document.querySelectorAll('.placa-tipo').forEach(btn => {
+  btn.addEventListener('click', () => {
+    placasFilters.tipo = btn.dataset.pvalue;
+    document.querySelectorAll('.placa-tipo').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyPlacasFilters();
+  });
+});
+
+document.querySelectorAll('.placa-esfera').forEach(btn => {
+  btn.addEventListener('click', () => {
+    placasFilters.esfera = btn.dataset.pesfera;
+    document.querySelectorAll('.placa-esfera').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyPlacasFilters();
+  });
+});
+
+document.getElementById('searchPlacas').addEventListener('input', e => {
+  placasFilters.text = e.target.value.toLowerCase();
+  applyPlacasFilters();
+});
+
+function clearPlacas() {
+  placasFilters.tipo = 'all'; placasFilters.esfera = 'all'; placasFilters.text = '';
+  document.querySelectorAll('.placa-tipo, .placa-esfera').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.placa-tipo[data-pvalue="all"], .placa-esfera[data-pesfera="all"]').forEach(b => b.classList.add('active'));
+  document.getElementById('searchPlacas').value = '';
+  applyPlacasFilters();
+}
+
+function applyPlacasFilters() {
+  let count = 0;
+  document.querySelectorAll('.placas-table tbody tr').forEach(tr => {
+    const t = tr.dataset.placaTipo || '';
+    const e = tr.dataset.placaEsfera || '';
+    const text = tr.textContent.toLowerCase();
+    const okTipo = placasFilters.tipo === 'all' || t === placasFilters.tipo;
+    const okEsfera = placasFilters.esfera === 'all' || e === placasFilters.esfera;
+    const okText = !placasFilters.text || text.includes(placasFilters.text);
+    if (okTipo && okEsfera && okText) { tr.style.display = ''; count++; }
+    else { tr.style.display = 'none'; }
+  });
+  document.getElementById('placasCount').textContent = count + ' placa' + (count !== 1 ? 's' : '');
+}
+
+// Marcar "Todas" como ativo inicialmente nos botões das placas
+document.querySelectorAll('.placa-tipo[data-pvalue="all"], .placa-esfera[data-pesfera="all"]').forEach(b => b.classList.add('active'));
+
+// FILTRO FONTES BIBLIOGRÁFICAS
+const fontesFilters = { tipo: 'all', text: '' };
+
+document.querySelectorAll('.fonte-tipo').forEach(btn => {
+  btn.addEventListener('click', () => {
+    fontesFilters.tipo = btn.dataset.fvalue;
+    document.querySelectorAll('.fonte-tipo').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFontesFilters();
+  });
+});
+
+const searchFontesEl = document.getElementById('searchFontes');
+if (searchFontesEl) {
+  searchFontesEl.addEventListener('input', e => {
+    fontesFilters.text = e.target.value.toLowerCase();
+    applyFontesFilters();
+  });
+}
+
+function applyFontesFilters() {
+  let count = 0;
+  document.querySelectorAll('#fontesBody tr').forEach(tr => {
+    const tipoCell = tr.querySelector('td:nth-child(2)');
+    const tipoTxt = tipoCell ? (tipoCell.textContent || '').toLowerCase() : '';
+    const fullText = tr.textContent.toLowerCase();
+
+    let matchTipo = true;
+    if (fontesFilters.tipo !== 'all') {
+      if (fontesFilters.tipo === 'federal') matchTipo = tipoTxt.includes('federal');
+      else if (fontesFilters.tipo === 'estadual') matchTipo = tipoTxt.includes('estadual');
+      else if (fontesFilters.tipo === 'municipal') matchTipo = tipoTxt.includes('municipal');
+      else if (fontesFilters.tipo === 'interna') matchTipo = tipoTxt.includes('interna');
+      else if (fontesFilters.tipo === 'auxiliar') matchTipo = tipoTxt.includes('auxiliar') || tipoTxt.includes('repositório');
+      else if (fontesFilters.tipo === 'normativa') matchTipo = tipoTxt.includes('normativa');
+    }
+
+    const matchText = !fontesFilters.text || fullText.includes(fontesFilters.text);
+
+    if (matchTipo && matchText) { tr.style.display = ''; count++; }
+    else { tr.style.display = 'none'; }
+  });
+  const cntEl = document.getElementById('fontesCount');
+  if (cntEl) cntEl.textContent = count + ' fonte' + (count !== 1 ? 's' : '');
+}
+</script>
+</body>
+
+<script>
+// SVG Icons for different sign subjects
+const SVG_ICONS = {
+  "fumigenos": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#CC0000" stroke-width="8"/>
+    <line x1="18" y1="18" x2="82" y2="82" stroke="#CC0000" stroke-width="8"/>
+    <rect x="25" y="44" width="45" height="12" fill="#00264D" rx="2"/>
+    <rect x="62" y="44" width="10" height="12" fill="#FFA500"/>
+    <path d="M 77 44 Q 82 35 77 28 Q 72 21 77 14" fill="none" stroke="#888" stroke-width="3"/>
+  </svg>`,
+  
+  "bombeiros": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <rect x="35" y="25" width="30" height="55" fill="#CC0000" rx="3"/>
+    <rect x="42" y="15" width="16" height="10" fill="#FFA500"/>
+    <circle cx="50" cy="40" r="8" fill="#FFF"/>
+    <path d="M 30 35 L 35 35 M 30 45 L 35 45 M 65 35 L 70 35 M 65 45 L 70 45" stroke="#CC0000" stroke-width="4"/>
+    <path d="M 50 55 L 50 80" stroke="#FFF" stroke-width="5"/>
+  </svg>`,
+  
+  "mulher": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <circle cx="50" cy="35" r="15" fill="#00264D"/>
+    <path d="M 50 50 L 50 75 M 40 60 L 60 60 M 35 90 L 50 75 L 65 90" stroke="#00264D" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#00264D" stroke-width="5"/>
+  </svg>`,
+  
+  "cozinha": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <path d="M 30 45 C 30 20, 70 20, 70 45 L 70 65 L 30 65 Z" fill="#00264D"/>
+    <rect x="25" y="65" width="50" height="10" fill="#00264D" rx="2"/>
+    <path d="M 35 75 Q 50 85 65 75" fill="none" stroke="#00264D" stroke-width="4"/>
+  </svg>`,
+  
+  "crianca": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <!-- Adults & Children silhouettes -->
+    <circle cx="35" cy="30" r="8" fill="#00264D"/>
+    <path d="M 25 70 L 25 45 C 25 40, 45 40, 45 45 L 45 70" stroke="#00264D" stroke-width="6" fill="none"/>
+    <circle cx="65" cy="45" r="6" fill="#00264D"/>
+    <path d="M 58 75 L 58 58 C 58 54, 72 54, 72 58 L 72 75" stroke="#00264D" stroke-width="5" fill="none"/>
+  </svg>`,
+  
+  "livro": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <rect x="20" y="20" width="60" height="60" fill="none" stroke="#00264D" stroke-width="6" rx="4"/>
+    <line x1="50" y1="20" x2="50" y2="80" stroke="#00264D" stroke-width="6"/>
+    <line x1="28" y1="35" x2="42" y2="35" stroke="#00264D" stroke-width="3"/>
+    <line x1="28" y1="45" x2="42" y2="45" stroke="#00264D" stroke-width="3"/>
+    <line x1="28" y1="55" x2="42" y2="55" stroke="#00264D" stroke-width="3"/>
+    <line x1="58" y1="35" x2="72" y2="35" stroke="#00264D" stroke-width="3"/>
+    <line x1="58" y1="45" x2="72" y2="45" stroke="#00264D" stroke-width="3"/>
+  </svg>`,
+  
+  "telefones": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <path d="M 25 30 C 25 20, 75 20, 75 30 L 70 80 C 70 85, 30 85, 30 80 Z" fill="none" stroke="#00264D" stroke-width="5"/>
+    <circle cx="50" cy="40" r="8" fill="#00264D"/>
+    <path d="M 40 60 Q 50 50 60 60" fill="none" stroke="#00264D" stroke-width="4"/>
+    <circle cx="50" cy="70" r="4" fill="#00264D"/>
+  </svg>`,
+  
+  "procon": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <path d="M 50 15 L 80 25 L 80 55 C 80 75, 50 85, 50 85 C 50 85, 20 75, 20 55 L 20 25 Z" fill="none" stroke="#00264D" stroke-width="6"/>
+    <path d="M 35 48 L 45 58 L 68 35" fill="none" stroke="#00264D" stroke-width="8" stroke-linecap="round"/>
+  </svg>`,
+  
+  "sonegar": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <polygon points="50,15 90,80 10,80" fill="none" stroke="#CC0000" stroke-width="7" stroke-linejoin="round"/>
+    <line x1="50" y1="35" x2="50" y2="60" stroke="#CC0000" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="50" cy="72" r="5" fill="#CC0000"/>
+  </svg>`,
+  
+  "camisinha": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <rect x="25" y="25" width="50" height="50" fill="none" stroke="#00264D" stroke-width="5" rx="5"/>
+    <circle cx="50" cy="50" r="18" fill="none" stroke="#00264D" stroke-width="4"/>
+    <circle cx="50" cy="50" r="10" fill="#00264D"/>
+  </svg>`,
+  
+  "aids": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <!-- Red ribbon -->
+    <path d="M 35 85 Q 50 60 50 40 C 50 30, 35 25, 45 15 C 55 10, 65 20, 60 30 C 55 40, 50 60, 65 85" fill="none" stroke="#CC0000" stroke-width="12" stroke-linecap="round"/>
+  </svg>`,
+  
+  "capacete": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#CC0000" stroke-width="8"/>
+    <line x1="18" y1="18" x2="82" y2="82" stroke="#CC0000" stroke-width="8"/>
+    <path d="M 30 50 A 20 20 0 1 1 70 50 L 70 65 L 30 65 Z" fill="#00264D"/>
+    <path d="M 45 42 L 65 42 L 60 52 L 42 52 Z" fill="#FFF"/>
+  </svg>`,
+  
+  "acessibilidade": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <circle cx="50" cy="25" r="8" fill="#00264D"/>
+    <path d="M 40 45 Q 50 40 60 45 L 65 65 L 55 65 L 52 50 L 48 50 L 45 78 L 35 78 Z" fill="#00264D"/>
+    <path d="M 42 58 A 18 18 0 1 0 58 70" fill="none" stroke="#00264D" stroke-width="6" stroke-linecap="round"/>
+  </svg>`,
+  
+  "preferencial": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <circle cx="20" cy="30" r="6" fill="#00264D"/>
+    <path d="M 15 50 Q 20 45 25 50 L 28 65 L 22 65 L 20 56 L 16 75 L 12 75 Z" fill="#00264D"/>
+    <circle cx="45" cy="30" r="6" fill="#00264D"/>
+    <path d="M 40 46 Q 45 42 50 46 L 53 60 L 47 60 L 45 52 L 41 68 L 37 68 Z" fill="#00264D"/>
+    <path d="M 38 52 A 10 10 0 1 0 50 62" fill="none" stroke="#00264D" stroke-width="4"/>
+    <circle cx="70" cy="30" r="6" fill="#00264D"/>
+    <path d="M 65 48 C 65 40, 75 40, 75 48 L 75 70" stroke="#00264D" stroke-width="5" fill="none"/>
+  </svg>`,
+  
+  "default": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="240" height="240">
+    <rect x="15" y="15" width="70" height="70" fill="none" stroke="#00264D" stroke-width="6" rx="8"/>
+    <line x1="50" y1="28" x2="50" y2="58" stroke="#00264D" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="50" cy="72" r="6" fill="#00264D"/>
+  </svg>`
+};
+
+// Maps signs slugs to specific SVG icons and titles
+const PLACA_CONFIG = {
+  "portaria_mtur_130_2011": { icon: "preferencial", title: "CADASTUR OBRIGATÓRIO" },
+  "lei_estadual_5517_2009": { icon: "fumigenos", title: "PROIBIDO FUMAR" },
+  "lei_estadual_6466_2013": { icon: "bombeiros", title: "CORPO DE BOMBEIROS" },
+  "lei_estadual_6961_2015": { icon: "mulher", title: "DISQUE SOS MULHER" },
+  "lei_estadual_6551_2013": { icon: "cozinha", title: "COZINHA FRANQUEADA" },
+  "lei_estadual_5123_2007": { icon: "crianca", title: "HOSPEDAGEM DE MENORES" },
+  "lei_estadual_6613_2013": { icon: "livro", title: "LIVRO DE RECLAMAÇÕES" },
+  "lei_estadual_2876_1997": { icon: "telefones", title: "SERVIÇOS DE EMERGÊNCIA" },
+  "lei_estadual_2487_1995": { icon: "procon", title: "FISCALIZAÇÃO PROCON" },
+  "lei_estadual_2211_1994": { icon: "sonegar", title: "SONEGAR É CRIME" },
+  "lei_estadual_1867_1991": { icon: "camisinha", title: "PRESERVATIVOS" },
+  "lei_estadual_4364_2004": { icon: "camisinha", title: "PRESERVATIVOS DISPONÍVEIS" },
+  "lei_estadual_2929_1998": { icon: "aids", title: "AVISO PREVENÇÃO HIV/DST" },
+  "lei_estadual_5977_2011": { icon: "aids", title: "PREVENÇÃO HIV/DST" },
+  "lei_estadual_5817_2010": { icon: "telefones", title: "PROCON E ALERJ" },
+  "lei_federal_11126_2005": { icon: "preferencial", title: "DIREITO AO CÃO-GUIA" },
+  "lei_estadual_6717_2014": { icon: "capacete", title: "PROIBIDO CAPACETE" },
+  "lei_estadual_7329_2016": { icon: "acessibilidade", title: "ACESSIBILIDADE LEGAL" },
+  "lei_federal_12291_2010": { icon: "livro", title: "CÓDIGO DE DEFESA DO CONSUMIDOR" },
+  "lei_estadual_9682_2022": { icon: "acessibilidade", title: "VAGAS PREFERENCIAIS MONITORADAS" },
+  "lei_estadual_7956_2023": { icon: "default", title: "AVISO SEGURANÇA ESCADAS" },
+  "lei_estadual_10978_2025": { icon: "acessibilidade", title: "SÍMBOLO DE ACESSIBILIDADE" }
+};
+
+function downloadPlaca(slug, tipo, num, assunto, nivel) {
+  const cfg = PLACA_CONFIG[slug] || { icon: "default", title: "AVISO OBRIGATÓRIO" };
+  const svg = SVG_ICONS[cfg.icon] || SVG_ICONS["default"];
+  
+  // Create plaque template in DOM temporarily
+  const previewContainer = document.getElementById('placa-preview-container');
+  previewContainer.innerHTML = `
+    <div id="placa-render" style="
+      width: 1123px;
+      height: 794px;
+      background: #ffffff;
+      border: 12px solid #00264D;
+      box-sizing: border-box;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      font-family: Arial, sans-serif;
+    ">
+      <!-- Header solid band -->
+      <div style="
+        width: 100%;
+        height: 110px;
+        background: #00264D;
+        color: #ffffff;
+        font-size: 42px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 6px;
+      ">
+        ${cfg.title}
+      </div>
+      
+      <!-- Central Icon -->
+      <div style="margin: 30px 0; display: flex; align-items: center; justify-content: center;">
+        ${svg}
+      </div>
+      
+      <!-- Legal Text Description -->
+      <div style="
+        font-size: 24px;
+        color: #00264D;
+        font-weight: bold;
+        text-align: center;
+        max-width: 900px;
+        line-height: 1.45;
+        margin-bottom: 25px;
+      ">
+        ${assunto}
+      </div>
+      
+      <!-- Citation Footer -->
+      <div style="
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-top: 2px solid #00264D;
+        padding-top: 20px;
+      ">
+        <div style="visibility: hidden; width: 150px;"></div> <!-- Spacer -->
+        
+        <div style="
+          font-size: 20px;
+          color: #00264D;
+          font-weight: bold;
+          text-decoration: underline;
+          text-align: center;
+          padding-bottom: 10px;
+        ">
+          ${tipo} nº ${num} (${nivel})
+        </div>
+        
+        <!-- Logo ABIH-RJ right corner -->
+        <div style="width: 150px; text-align: right;">
+          <img src="https://abihrj.com.br/wp-content/uploads/2024/08/cropped-Logo-ABIH-RJ-Fundo-Transparente-01-1-300x149-1-2.webp" 
+               style="height: 65px; width: auto; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Render html to canvas
+  const element = document.getElementById('placa-render');
+  
+  // Options for high quality render
+  const opt = {
+    scale: 2,
+    useCORS: true,
+    allowTaint: true
+  };
+  
+  html2canvas(element, opt).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+    
+    // Create landscape A4 PDF
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({
+      orientation: 'landscape',
+      unit: 'mm',
+      format: 'a4'
+    });
+    
+    // Add image fitting the page exactly
+    pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
+    
+    // Download
+    const filename = `Placa_Obrigatoria_${slug}.pdf`;
+    pdf.save(filename);
+    
+    // Cleanup preview
+    previewContainer.innerHTML = '';
+  }).catch(err => {
+    console.error('Error rendering plaque PDF:', err);
+    alert('Erro ao gerar placa. Por favor, tente novamente.');
+  });
+}
+</script>
+</html>
